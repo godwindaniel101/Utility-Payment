@@ -20,7 +20,7 @@ var render = function() {
     { staticClass: "rounded-md shadow w-48 m-auto flex border border-red-600" },
     [
       _c("v-button", {
-        attrs: { tag: "Register" },
+        attrs: { tag: "Set Default" },
         on: {
           BtnClicked: function($event) {
             return _vm.$store.dispatch("setDefaultUser")
