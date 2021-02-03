@@ -1,0 +1,16 @@
+.error{
+    color: red !important;
+    font-weight: 100;
+    font-size: 11px;
+}
+.d_center{
+    align-items: center !important
+}
+._Xsdds{
+    padding:50px;
+    display:flex;
+    flex-direction:column
+}
+.x_height{
+    min-height:300px
+}
