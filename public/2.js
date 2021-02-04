@@ -231,7 +231,7 @@ var render = function() {
                           : "",
                       attrs: { to: "/admin/complains" }
                     },
-                    [_vm._v("\n            Complians\n          ")]
+                    [_vm._v("\n            Complains\n          ")]
                   ),
                   _vm._v(" "),
                   _c(

@@ -35,7 +35,7 @@
                 $route.fullPath == '//admin/complains' ? 'bg-indigo-700' : ''
               "
             >
-              Complians
+              Complains
             </router-link>
             <router-link
               to="/admin/payments"

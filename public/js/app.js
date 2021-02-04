@@ -31853,8 +31853,8 @@ var routes = [{
       path: 'complains',
       component: AdminComplains
     }, {
-      path: 'complains',
-      component: AdminComplains
+      path: 'payments',
+      component: AdminPayments
     }, {
       path: 'report',
       component: AdminReportView,

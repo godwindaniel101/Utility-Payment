@@ -62,7 +62,7 @@ export const routes = [
                 children: [
                     { path: '', component: AdminIndex },
                     { path: 'complains', component: AdminComplains },
-                    { path: 'complains', component: AdminComplains },
+                    { path: 'payments', component: AdminPayments },
                     {
                         path: 'report', component: AdminReportView,
                         children: [
