@@ -42,7 +42,8 @@ Route::group([
 ], function () {
     Route::post('create', 'api\BillController@create');
     Route::delete('delete/{id}', 'api\BillController@delete');
-    Route::post('paybill', 'api\BillController@paybill');
+    Route::post('pay_top_up', 'api\BillController@payTopUp');
+    Route::post('pay_bill', 'api\BillController@payBill');
     Route::get('user_payment', 'api\BillController@getUserPayment');
     Route::get('all_payment', 'api\BillController@getPayment');
     Route::post('issue_bill', 'api\BillController@issueBill');

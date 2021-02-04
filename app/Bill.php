@@ -12,4 +12,7 @@ class Bill extends Model
     protected $fillable = [
         'name', 'vendor_id', 'ref_number'
     ];
+    public function vendor(){
+        return $this->hasOne('App\Vendor', 'id', 'vendor_id');
+    }
 }

@@ -1,45 +1,27 @@
 <template>
-  <div
-    class=" flex items-center justify-center  py-2 px-4 sm:px-2 lg:px-2"
-  >
+  <div class="flex items-center justify-center py-2 px-4 sm:px-2 lg:px-2">
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">
-         Top Up
+          Pay Bill
         </h2>
       </div>
       <form
         class="mt-4 space-y-3"
-        @submit.prevent="$store.dispatch('payTopUp' , form)"
+        @submit.prevent="$store.dispatch('payBill', form)"
       >
         <input type="hidden" name="remember" value="true" />
         <div class="rounded-md shadow-sm -space-y-px">
           <v-input
-            @vchange="form.phone_no = $event"
-            :extra_class="'rounded-t-md'"
-            placeholder="Enter Phone Number"
-            type="text"
-            id="phone_no"
-            label="phone_no"
-            error="phone_no"
-            :value="form.phone_no"
-          />
-           <span
-            class="error"
-            v-if="
-              getErrors['invalidnumber'] != null &&
-              getErrors['invalidnumber'] != ''
-            "
-            v-html="'* '+getErrors['invalidnumber'][0]"></span
-          >
-          <v-input
             @vchange="form.amount = $event"
+            :extra_class="'rounded-t-md'"
             placeholder="Enter Amount"
             type="text"
             id="amount"
             label="amount"
             error="amount"
             :value="form.amount"
+            :disabled="true"
           />
           <v-input
             @vchange="form.description = $event"
@@ -50,6 +32,7 @@
             label="description"
             error="description"
             :value="form.description"
+            :disabled="true"
           />
         </div>
         <div>
@@ -73,7 +56,7 @@
                 />
               </svg>
             </span>
-           Top
+            Pay
           </button>
         </div>
       </form>
@@ -85,16 +68,25 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      form: {bill_id:'',phone_no:'',amount:'',description:''},
-      edit_mode:false
+      form: { amount: "", description: "", bill_id: "", bill_ref: "" },
+      edit_mode: false,
     };
   },
   mounted() {
-    this.form.bill_id = this.$route.params.id;  
-     this.$store.dispatch("clearAllError");
+    this.form.bill_id = this.$route.params.id;
+    this.form.amount = this.getBillCart["amount"];
+    this.form.description = this.getBillCart["description"];
+    this.form.bill_ref = this.getBillCart["id"];
+    this.$store.dispatch("clearAllError");
   },
-    computed: {
-    ...mapGetters(["getErrors"]),
+  watch: {
+    getBillCart() {
+      this.form.amount = this.getBillCart["amount"];
+      console.log(this.getBillCart);
+    },
+  },
+  computed: {
+    ...mapGetters(["getBillCart"]),
   },
 };
 </script>

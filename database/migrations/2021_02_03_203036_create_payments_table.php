@@ -16,9 +16,9 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->uuid('id');
             $table->uuid('user_id');
-            $table->uuid('bill_ref_id')->nullable();
+            $table->uuid('bill_ref')->nullable();
             $table->string('amount');
-            $table->string('phone_no');
+            $table->string('phone_no')->nullable();
             $table->string('description');
             $table->timestamps();
         });

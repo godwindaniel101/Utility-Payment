@@ -41,6 +41,7 @@ const CustomerReportView = resolve => require(['../pages/Customer/Report/View'],
 const CustomerReportIndex = resolve => require(['../pages/Customer/Report/Index'], resolve);
 const CustomerBillView = resolve => require(['../pages/Customer/Bill/View'], resolve);
 const CustomerBillIndex = resolve => require(['../pages/Customer/Bill/Index'], resolve);
+const CustomerBillPay = resolve => require(['../pages/Customer/Bill/Pay'], resolve);
 // end Customer routes
 
 
@@ -123,6 +124,7 @@ export const routes = [
                         children: [
                             { path: '', component: CustomerBillIndex },
                             { path: ':id', component: CustomerTopUpIndex },
+                            { path: 'pay/:id', component: CustomerBillPay },
                         ]
                     },
                     { path: 'payment', component: CustomerPayment },

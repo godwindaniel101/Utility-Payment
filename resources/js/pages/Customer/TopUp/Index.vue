@@ -2,9 +2,7 @@
     <section
         class="px-4 sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4"
     >
-        <header class="flex items-center justify-between">
-            <h2 class="text-lg leading-6 font-medium text-black">Select Vendors</h2>
-        </header>
+        <v-header text="Vendors"></v-header>
         <form class="relative">
             <svg
                 width="20"
@@ -29,9 +27,9 @@
         <ul
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4"
         >
-            <li v-for="item in vendors" :key="item.id">
+            <li v-for="item in vendor" :key="item.id">
                 <router-link
-                    :to="'/customer/top-up/'+item.id"
+                    :to="$route.params.id == null ?'/customer/top-up/'+item.id :'/customer/top-up/'+item.id+'?bill_ref='+$route.params.id"
                     class="hover:bg-light-blue-500 hover:border-transparent cursor-pointer hover:shadow-sm group block rounded-md p-4 border border-gray-200"
                 >
                     <dl class="flex flex-row">
@@ -53,6 +51,22 @@
                                 </dd>
                             </div>
                         </div>
+
+                        <div class="col-start-2 row-start-1 row-end-3">
+                            <dt class="sr-only">Users</dt>
+                            <dd
+                                class="flex justify-center sm:justify-center lg:justify-center xl:justify-center -space-x-2"
+                            >
+                                <img
+                                    x-for="user in item.users"
+                                    src="/images/sw_logo.png"
+                                    :alt="item.name"
+                                    width="64"
+                                    height="64"
+                                    class="w-20 h-20 rounded-full bg-gray-100 border-2 border-white"
+                                />
+                            </dd>
+                        </div>
                     </dl>
                 </router-link>
             </li>
@@ -67,14 +81,14 @@ export default {
     },
     data(){
         return{
-            vendors:''
+            vendor:''
         }
     },
-    watch: {
-    getVendors() {
-      this.vendors = this.getVendors;
+    watch:{
+        getVendors(){
+            this.vendor = this.getVendors
+        }
     },
-  },
       computed: {
     ...mapGetters(["getVendors"]),
   },

@@ -19,6 +19,7 @@ import {router} from "./scripts/guard";
 import Notifications from 'vue-notification'
 import SearchInput from './components/SearchInput'
 import Textarea from './components/Textarea'
+import Header from './components/Header'
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
@@ -35,6 +36,7 @@ Vue.use(VueRouter);
 Vue.component('v-input',Input)
 Vue.component('v-button',Button)
 Vue.component('v-textarea',Textarea)
+Vue.component('v-header',Header)
 Vue.component('search-input',SearchInput)
 Vue.component("vuetable",Vuetable);
 Vue.component("vuetable-pagination",VuetablePagination);

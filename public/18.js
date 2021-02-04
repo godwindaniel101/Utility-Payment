@@ -77,6 +77,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -84,12 +98,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      vendors: ''
+      vendor: ''
     };
   },
   watch: {
     getVendors: function getVendors() {
-      this.vendors = this.getVendors;
+      this.vendor = this.getVendors;
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getVendors"]))
@@ -119,7 +133,7 @@ var render = function() {
         "px-4 sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4"
     },
     [
-      _vm._m(0),
+      _c("v-header", { attrs: { text: "Vendors" } }),
       _vm._v(" "),
       _c("form", { staticClass: "relative" }, [
         _c(
@@ -158,7 +172,7 @@ var render = function() {
           staticClass:
             "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4"
         },
-        _vm._l(_vm.vendors, function(item) {
+        _vm._l(_vm.vendor, function(item) {
           return _c(
             "li",
             { key: item.id },
@@ -168,7 +182,15 @@ var render = function() {
                 {
                   staticClass:
                     "hover:bg-light-blue-500 hover:border-transparent cursor-pointer hover:shadow-sm group block rounded-md p-4 border border-gray-200",
-                  attrs: { to: "/customer/top-up/" + item.id }
+                  attrs: {
+                    to:
+                      _vm.$route.params.id == null
+                        ? "/customer/top-up/" + item.id
+                        : "/customer/top-up/" +
+                          item.id +
+                          "?bill_ref=" +
+                          _vm.$route.params.id
+                  }
                 },
                 [
                   _c("dl", { staticClass: "flex flex-row" }, [
@@ -212,7 +234,36 @@ var render = function() {
                           ]
                         )
                       ])
-                    ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-start-2 row-start-1 row-end-3" },
+                      [
+                        _c("dt", { staticClass: "sr-only" }, [_vm._v("Users")]),
+                        _vm._v(" "),
+                        _c(
+                          "dd",
+                          {
+                            staticClass:
+                              "flex justify-center sm:justify-center lg:justify-center xl:justify-center -space-x-2"
+                          },
+                          [
+                            _c("img", {
+                              staticClass:
+                                "w-20 h-20 rounded-full bg-gray-100 border-2 border-white",
+                              attrs: {
+                                "x-for": "user in item.users",
+                                src: "/images/sw_logo.png",
+                                alt: item.name,
+                                width: "64",
+                                height: "64"
+                              }
+                            })
+                          ]
+                        )
+                      ]
+                    )
                   ])
                 ]
               )
@@ -222,21 +273,11 @@ var render = function() {
         }),
         0
       )
-    ]
+    ],
+    1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "flex items-center justify-between" }, [
-      _c("h2", { staticClass: "text-lg leading-6 font-medium text-black" }, [
-        _vm._v("Select Vendors")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -52,8 +52,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -98,10 +96,10 @@ var render = function() {
         "px-4 sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4"
     },
     [
-      _vm._m(0),
+      _c("v-header", { attrs: { text: "Payment Records" } }),
       _vm._v(" "),
       _c("table", { staticClass: "shadow-md rounded w-full" }, [
-        _vm._m(1),
+        _vm._m(0),
         _vm._v(" "),
         _c(
           "tbody",
@@ -135,7 +133,13 @@ var render = function() {
                         staticClass:
                           "hover:bg-light-blue-200 bg-red-200 hover:text-light-blue-800 group text-center rounded-sm text-white-800 text-sm font-medium px-2 py-2",
                         attrs: {
-                          to: "/customer/top-up/pay/" + bill.id,
+                          to:
+                            _vm.$route.query.bill_ref != null
+                              ? "/customer/bill/pay/" +
+                                bill.id +
+                                "?bill_ref=" +
+                                _vm.$route.query.bill_ref
+                              : "/customer/top-up/pay/" + bill.id,
                           tag: "button"
                         }
                       },
@@ -150,20 +154,11 @@ var render = function() {
           0
         )
       ])
-    ]
+    ],
+    1
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "flex items-center justify-between" }, [
-      _c("h2", { staticClass: "text-lg leading-6 font-medium text-black" }, [
-        _vm._v("Payment Records")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

@@ -2,9 +2,7 @@
   <section
         class="px-4 sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4"
     >
-       <header class="flex items-center justify-between">
-            <h2 class="text-lg leading-6 font-medium text-black">Payment Records</h2>
-        </header>
+        <v-header text="Payment Records"></v-header>
     <table class='shadow-md rounded w-full'>
   <thead class='sticky block top-0' scope='col'>
     <tr class='flex text-left '>
@@ -23,7 +21,7 @@
       <td class='w-4/12 sm:w-1/3 p-2 border-gray-300 border border-r-0 border-t-0'>{{bill.name}}</td>
       <td class='w-8/12 sm:w-2/3 p-2 border-gray-300 border border-r-0 border-t-0'>
            <router-link
-         :to="'/customer/top-up/pay/'+bill.id"
+         :to="$route.query.bill_ref != null ? '/customer/bill/pay/'+bill.id+'?bill_ref='+$route.query.bill_ref :'/customer/top-up/pay/'+bill.id"
          tag="button"
            class="hover:bg-light-blue-200 bg-red-200 hover:text-light-blue-800 group text-center rounded-sm text-white-800 text-sm font-medium px-2 py-2"
                >

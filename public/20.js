@@ -88,26 +88,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       form: {
-        amount: "",
-        description: ""
+        bill_id: '',
+        phone_no: '',
+        amount: '',
+        description: ''
       },
       edit_mode: false
     };
   },
   mounted: function mounted() {
     this.form.bill_id = this.$route.params.id;
+    this.$store.dispatch("clearAllError");
   },
-  watch: {
-    getBillCart: function getBillCart() {
-      this.form.amount = this.getBillCart["amount"];
-    }
-  },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getBillCart"]))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getErrors"]))
 });
 
 /***/ }),
@@ -130,7 +138,8 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "flex items-center justify-center py-2 px-4 sm:px-2 lg:px-2"
+      staticClass:
+        " flex items-center justify-center  py-2 px-4 sm:px-2 lg:px-2"
     },
     [
       _c("div", { staticClass: "max-w-md w-full space-y-8" }, [
@@ -143,7 +152,7 @@ var render = function() {
             on: {
               submit: function($event) {
                 $event.preventDefault()
-                return _vm.$store.dispatch("payBill", _vm.form)
+                return _vm.$store.dispatch("payTopUp", _vm.form)
               }
             }
           },
@@ -172,6 +181,18 @@ var render = function() {
                     }
                   }
                 }),
+                _vm._v(" "),
+                _vm.getErrors["invalidnumber"] != null &&
+                _vm.getErrors["invalidnumber"] != ""
+                  ? _c("span", {
+                      staticClass: "error",
+                      domProps: {
+                        innerHTML: _vm._s(
+                          "* " + _vm.getErrors["invalidnumber"][0]
+                        )
+                      }
+                    })
+                  : _vm._e(),
                 _vm._v(" "),
                 _c("v-input", {
                   attrs: {
@@ -250,7 +271,7 @@ var render = function() {
                       )
                     ]
                   ),
-                  _vm._v("\n          Pay Vendor\n        ")
+                  _vm._v("\n         Top\n        ")
                 ]
               )
             ])
@@ -269,7 +290,7 @@ var staticRenderFns = [
       _c(
         "h2",
         { staticClass: "mt-6 text-center text-3xl font-bold text-gray-900" },
-        [_vm._v("\n        Pay Now\n      ")]
+        [_vm._v("\n       Top Up\n      ")]
       )
     ])
   }
