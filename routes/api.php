@@ -46,8 +46,13 @@ Route::group([
     Route::get('user_payment', 'api\BillController@getUserPayment');
     Route::get('all_payment', 'api\BillController@getPayment');
 });
-
-
+Route::group([
+    'prefix' => 'number',
+    'middleware' => 'auth:api'
+], function () {
+    Route::post('create', 'api\NumberController@create');
+    Route::delete('delete/{id}', 'api\NumberController@delete');
+});
 Route::group([
     'prefix' => 'complain',
     'middleware' => 'auth:api'
@@ -56,4 +61,10 @@ Route::group([
     Route::get('get_complain', 'api\ComplainController@getComplain');
     Route::get('get_customer_complain', 'api\ComplainController@getUserComplain');
     Route::get('get_unit_complain/{id}', 'api\ComplainController@getUnitComplain');
+});
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => 'auth:api'
+], function () {
+    Route::post('get_customers', 'api\AdminController@getCustomers');
 });

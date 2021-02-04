@@ -103,6 +103,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -228,6 +246,34 @@ var render = function() {
                       attrs: { to: "/admin/payments" }
                     },
                     [_vm._v("\n            Payments\n          ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      staticClass:
+                        "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
+                      class:
+                        _vm.$route.fullPath == "/admin/report"
+                          ? "bg-indigo-700"
+                          : "",
+                      attrs: { to: "/admin/report" }
+                    },
+                    [_vm._v("\n            Report\n          ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      staticClass:
+                        "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
+                      class:
+                        _vm.$route.fullPath == "/admin/customer"
+                          ? "bg-indigo-700"
+                          : "",
+                      attrs: { to: "/admin/customer" }
+                    },
+                    [_vm._v("\n            Customers\n          ")]
                   ),
                   _vm._v(" "),
                   _c(

@@ -98,6 +98,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -236,6 +244,25 @@ var render = function() {
                       }
                     },
                     [_vm._v("\n            Complain\n          ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      staticClass:
+                        "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
+                      class:
+                        _vm.$route.fullPath == "/customer/report"
+                          ? "bg-indigo-700"
+                          : "",
+                      attrs: { to: "/customer/report" },
+                      on: {
+                        click: function($event) {
+                          return _vm.select("performance")
+                        }
+                      }
+                    },
+                    [_vm._v("\n            Report\n          ")]
                   ),
                   _vm._v(" "),
                   _c(

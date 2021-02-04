@@ -19,13 +19,17 @@ import {router} from "./scripts/guard";
 import Notifications from 'vue-notification'
 import SearchInput from './components/SearchInput'
 import Textarea from './components/Textarea'
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
+
 /*
 or for SSR:
 import Notifications from 'vue-notification/dist/ssr.js'
 */
 
 Vue.use(Notifications)
-
+Vue.use(VueSweetalert2);
 Vue.use(VueRouter);
 
 Vue.component('v-input',Input)

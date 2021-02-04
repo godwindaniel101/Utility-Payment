@@ -103,7 +103,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      form: {},
+      form: {
+        name: '',
+        description: '',
+        contact_email: '',
+        contact_number: ''
+      },
       edit_mode: false
     };
   },

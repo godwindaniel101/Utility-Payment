@@ -86,7 +86,7 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      form: {},
+      form: {name:'',description:'',contact_email:'',contact_number:''},
       edit_mode:false
     };
   },

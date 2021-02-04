@@ -16,4 +16,7 @@ class Vendor extends Model
     public function bill(){
         return $this->hasMany('App\Bill', 'vendor_id', 'id');
     }
+    public function number(){
+        return $this->hasMany('App\Number', 'vendor_id', 'id');
+    }
 }

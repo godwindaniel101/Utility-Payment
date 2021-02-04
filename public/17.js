@@ -81,7 +81,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: {
-        vendor_id: ''
+        vendor_id: '',
+        ref_number: '',
+        name: ''
       },
       edit_mode: false
     };
@@ -167,7 +169,7 @@ var render = function() {
                     id: "ref_number",
                     label: "ref_number",
                     error: "ref_number",
-                    value: _vm.form.ref_number
+                    value: _vm.form.number
                   },
                   on: {
                     vchange: function($event) {

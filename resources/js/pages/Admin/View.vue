@@ -46,6 +46,24 @@
             >
               Payments
             </router-link>
+            <router-link
+              to="/admin/report"
+              class="rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full"
+              :class="
+                $route.fullPath == '/admin/report' ? 'bg-indigo-700' : ''
+              "
+            >
+              Report
+            </router-link>
+             <router-link
+              to="/admin/customer"
+              class="rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full"
+              :class="
+                $route.fullPath == '/admin/customer' ? 'bg-indigo-700' : ''
+              "
+            >
+              Customers
+            </router-link>
             <button
               href="#"
               @click="$store.dispatch('logoutUser')"

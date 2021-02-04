@@ -8,7 +8,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
-{
+{   
+    public function getCustomers(){
+        $data = User::where('user_type','customer')->get();
+        return response()->json($data);
+    }
     public function createDefaultAccess(Request $request)
     {
 

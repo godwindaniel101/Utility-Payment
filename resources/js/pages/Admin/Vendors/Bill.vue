@@ -33,7 +33,7 @@
             id="ref_number"
             label="ref_number"
             error="ref_number"
-            :value="form.ref_number"
+            :value="form.number"
           />
         </div>
         <div>
@@ -69,7 +69,7 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      form: {vendor_id:''},
+      form: {vendor_id:'',ref_number:'',name:''},
       edit_mode:false
     };
   },

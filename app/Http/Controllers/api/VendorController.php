@@ -60,7 +60,7 @@ class VendorController extends Controller
     }
 
     public function show($id){
-        $data = Vendor::where('id',$id)->with('bill')->first();
+        $data = Vendor::where('id',$id)->with('bill')->with('number')->first();
         return response()->json($data, 201);
     }
 }

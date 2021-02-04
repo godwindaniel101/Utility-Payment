@@ -171,6 +171,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -291,14 +307,12 @@ var render = function() {
             ),
             _vm._v(" "),
             _c(
-              "button",
+              "router-link",
               {
                 staticClass:
                   "hover:bg-light-green-200 bg-green-100 hover:text-light-blue-800 group text-center flex items-center rounded-sm text-white-800 text-sm font-medium px-2 py-2 mt-2",
-                on: {
-                  click: function($event) {
-                    return _vm.$store.dispatch("addNumber", _vm.vendor.id)
-                  }
+                attrs: {
+                  to: "/admin/vendors/detail/" + _vm.vendor.id + "/number"
                 }
               },
               [_vm._v("\n        Add Number\n      ")]
@@ -429,13 +443,39 @@ var render = function() {
                     "td",
                     {
                       staticClass:
-                        "w-8/12 sm:w-1/3 2-2 border-gray-300 border border-r-0 border-t-0"
+                        "w-4/12 sm:w-1/3 p-2 border bg-white border-r-0 border-gray-300 font-normal"
                     },
                     [
                       _vm._v(
                         "\n            " +
                           _vm._s(number.number) +
                           "\n          "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      staticClass:
+                        "w-4/12 sm:w-1/3 p-2 border bg-white border-r-0 border-gray-300 font-normal"
+                    },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "hover:bg-light-red-200 bg-red-200 hover:text-light-blue-800 group text-center rounded-sm text-white-800 text-sm font-medium px-2 py-2",
+                          on: {
+                            click: function($event) {
+                              return _vm.$store.dispatch(
+                                "deleteNumber",
+                                number.id
+                              )
+                            }
+                          }
+                        },
+                        [_vm._v("\n              Delete\n            ")]
                       )
                     ]
                   )
@@ -535,10 +575,20 @@ var staticRenderFns = [
             "th",
             {
               staticClass:
-                "w-8/12 sm:w-2/3 p-2 border bg-white border-r-0 border-gray-300 font-normal",
+                "w-4/12 sm:w-1/3 p-2 border bg-white border-r-0 border-gray-300 font-normal",
               attrs: { scope: "col" }
             },
             [_c("h4", { staticClass: "u-slab" }, [_vm._v("Number")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "th",
+            {
+              staticClass:
+                "w-4/12 sm:w-1/3 p-2 border bg-white border-r-0 border-gray-300 font-normal",
+              attrs: { scope: "col" }
+            },
+            [_c("h4", { staticClass: "u-slab" }, [_vm._v("Action")])]
           )
         ])
       ]

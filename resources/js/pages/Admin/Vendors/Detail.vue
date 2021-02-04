@@ -37,12 +37,12 @@
         >
           Add Bill
         </router-link>
-        <button
-        @click="$store.dispatch('addNumber', vendor.id)"
+        <router-link
+          :to="'/admin/vendors/detail/' + vendor.id + '/number'"
           class="hover:bg-light-green-200 bg-green-100 hover:text-light-blue-800 group text-center flex items-center rounded-sm text-white-800 text-sm font-medium px-2 py-2 mt-2"
         >
           Add Number
-        </button>
+        </router-link>
       </div>
     </div>
 
@@ -124,9 +124,15 @@
             </th>
             <th
               scope="col"
-              class="w-8/12 sm:w-2/3 p-2 border bg-white border-r-0 border-gray-300 font-normal"
+              class="w-4/12 sm:w-1/3 p-2 border bg-white border-r-0 border-gray-300 font-normal"
             >
               <h4 class="u-slab">Number</h4>
+            </th>
+              <th
+              scope="col"
+              class="w-4/12 sm:w-1/3 p-2 border bg-white border-r-0 border-gray-300 font-normal"
+            >
+              <h4 class="u-slab">Action</h4>
             </th>
           </tr>
         </thead>
@@ -143,9 +149,19 @@
               {{ number.name }}
             </td>
             <td
-              class="w-8/12 sm:w-1/3 2-2 border-gray-300 border border-r-0 border-t-0"
+              class="w-4/12 sm:w-1/3 p-2 border bg-white border-r-0 border-gray-300 font-normal"
             >
               {{ number.number }}
+            </td>
+             <td
+              class="w-4/12 sm:w-1/3 p-2 border bg-white border-r-0 border-gray-300 font-normal"
+            >
+               <button
+                @click="$store.dispatch('deleteNumber', number.id)"
+                class="hover:bg-light-red-200 bg-red-200 hover:text-light-blue-800 group text-center rounded-sm text-white-800 text-sm font-medium px-2 py-2"
+              >
+                Delete
+              </button>
             </td>
           </tr>
         </tbody>

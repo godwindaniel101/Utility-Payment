@@ -31,8 +31,9 @@ class BillController extends Controller
     public function delete($id)
     {
         try {
-            Bill::find($id)->delete();
-            return response()->json(['message' => 'Bill Delete', 'status' => 'success'], 201);
+            $data = Bill::find($id);
+            $data->delete();
+            return response()->json(['message' => 'Bill Deleted', 'status' => 'success','vendor_id' =>$data->vendor_id], 201);
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
         }

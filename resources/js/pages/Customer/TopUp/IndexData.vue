@@ -19,7 +19,7 @@
           <dd class="mt-1 flex-auto  text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex flex-row justify-center d_center">
           
              <router-link
-         :to="'/customer/pay-now/' +bill.id"
+         :to="'/customer/top-up/pay/'+bill.id"
           class="hover:bg-light-red-200 bg-red-200 hover:text-light-blue-800 group text-center flex items-center rounded-sm text-white-800 text-sm font-medium px-2 py-2 mt-2"
         >
              Pay Now

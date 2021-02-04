@@ -38,10 +38,11 @@ export const store = new Vuex.Store({
         },
         vendors: '',
         unit_vendors: '',
-        user_payments:'',
-        all_payments:'',
-        user_complain:'',
-        all_complain:'',
+        user_payments: '',
+        all_payments: '',
+        user_complain: '',
+        all_complain: '',
+        all_customers:'',
     },
     getters: {
         getErrors: state => {
@@ -80,6 +81,10 @@ export const store = new Vuex.Store({
             return (state.all_complain)
             //set default style across table
         },
+        getCustomers: state => {
+            return (state.all_customers)
+            //set default style across table
+        },
     },
     mutations: {
         setUserDetail: (state, data) => {
@@ -111,6 +116,14 @@ export const store = new Vuex.Store({
                 text: data.message
             });
         },
+        notifyDelete: (state, data) => {
+
+            Vue.swal(
+                'Deleted!',
+                data.message,
+                data.status,
+            )
+        },
         clearAllError: (state, data) => {
             state.errors = [];
             //clear unit error
@@ -137,6 +150,10 @@ export const store = new Vuex.Store({
         },
         setComplain: (state, data) => {
             state.all_complain = data;
+            //clear unit error
+        },
+        setCustomers: (state, data) => {
+            state.all_customers = data;
             //clear unit error
         },
     },
@@ -195,6 +212,8 @@ export const store = new Vuex.Store({
             commit("logoutUser");
             router.push({ path: "/" });
         },
+
+
         // START OF SETTING DEFAULT USER
         setDefaultUser: ({ commit }) => {
             axios
@@ -207,6 +226,8 @@ export const store = new Vuex.Store({
                     commit("setErrors", error.response.data.errors);
                 });
         },
+
+        //create new vendor
         createVendor: ({ commit }, form) => {
             axios
                 .post("/api/vendors/create", form)
@@ -219,6 +240,7 @@ export const store = new Vuex.Store({
                     commit("setErrors", error.response.data.errors);
                 });
         },
+        //update vendor record
         updateVendor: ({ commit }, form) => {
             axios
                 .put("/api/vendors/update/" + form.id, form)
@@ -231,6 +253,7 @@ export const store = new Vuex.Store({
                     commit("setErrors", error.response.data.errors);
                 });
         },
+        //get all vendors
         getVendors: ({ commit }) => {
             axios
                 .get("/api/vendors/index")
@@ -242,18 +265,32 @@ export const store = new Vuex.Store({
                     commit("setErrors", error.response.data.errors);
                 });
         },
+        // delete vendors
         deleteVendor: ({ commit }, id) => {
-            axios
-                .delete("/api/vendors/delete/" + id)
-                .then(({ data }) => {
-                    router.push({ path: "/admin/vendors" });
-                    commit("notify", data);
-                })
-                .catch(error => {
-                    console.log(error)
-                    commit("setErrors", error.response.data.errors);
-                });
+            Vue.swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios
+                        .delete("/api/vendors/delete/" + id)
+                        .then(({ data }) => {
+                            commit("notifyDelete", data);
+                            router.push({ path: "/admin/vendors" });
+                        })
+                        .catch(error => {
+                            console.log(error)
+                            commit("setErrors", error.response.data.errors);
+                        });
+                }
+            })
         },
+        //get single vendor record
         getUnitVendor: ({ commit }, id) => {
             axios
                 .get("/api/vendors/show/" + id)
@@ -265,11 +302,12 @@ export const store = new Vuex.Store({
                     commit("setErrors", error.response.data.errors);
                 });
         },
+        //create billing type attached to each vendors
         createBill: ({ commit }, form) => {
             axios
                 .post("/api/bill/create", form)
                 .then(({ data }) => {
-                    router.push({ path: "/admin/vendors/detail/"+form.vendor_id });
+                    router.push({ path: "/admin/vendors/detail/" + form.vendor_id });
                     commit("notify", data);
                 })
                 .catch(error => {
@@ -277,42 +315,59 @@ export const store = new Vuex.Store({
                     commit("setErrors", error.response.data.errors);
                 });
         },
-        deleteBill: ({ commit }, id) => {
-            axios
-                .delete("/api/bill/delete/" + id)
-                .then(({ data }) => {
-                    commit("notify", data);
-                    this.getVendors();
-                })
-                .catch(error => {
-                    console.log(error)
-                    commit("setErrors", error.response.data.errors);
-                });
+        //delete billing type record
+        deleteBill: ({ commit,dispatch }, id) => {
+            Vue.swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios
+                        .delete("/api/bill/delete/" + id)
+                        .then(({ data }) => {
+                            commit("notifyDelete", data);
+                            dispatch('getUnitVendor' , data.vendor_id);
+                        })
+                        .catch(error => {
+                            console.log(error)
+                            commit("setErrors", error.response.data.errors);
+                        });
+                }
+            })
+
         },
+        //pay bill
         payBill: ({ commit }, data) => {
             axios
-                .post("/api/bill/paybill",data)
+                .post("/api/bill/paybill", data)
                 .then(({ data }) => {
                     commit("notify", data);
-                    router.push({ path: "/customer"});
+                    router.push({ path: "/customer" });
                 })
                 .catch(error => {
                     console.log(error)
                     commit("setErrors", error.response.data.errors);
                 });
         },
+        //create complain by customer
         createComplain: ({ commit }, data) => {
             axios
-                .post("/api/complain/create" , data)
+                .post("/api/complain/create", data)
                 .then(({ data }) => {
                     commit("notify", data);
-                    router.push({ path: "/customer/complain"});
+                    router.push({ path: "/customer/complain" });
                 })
                 .catch(error => {
                     console.log(error)
                     commit("setErrors", error.response.data.errors);
                 });
         },
+        //create a payment
         getUserPayment: ({ commit }) => {
             axios
                 .get("/api/bill/user_payment")
@@ -324,6 +379,7 @@ export const store = new Vuex.Store({
                     commit("setErrors", error.response.data.errors);
                 });
         },
+        //get all payment record
         getPayment: ({ commit }) => {
             axios
                 .get("/api/bill/all_payment")
@@ -335,6 +391,7 @@ export const store = new Vuex.Store({
                     commit("setErrors", error.response.data.errors);
                 });
         },
+        // get payment record for a user
         getUserComplain: ({ commit }) => {
             axios
                 .get("/api/complain/get_customer_complain")
@@ -346,6 +403,7 @@ export const store = new Vuex.Store({
                     commit("setErrors", error.response.data.errors);
                 });
         },
+        // get all complain record
         getComplain: ({ commit }) => {
             axios
                 .get("/api/complain/get_complain")
@@ -357,8 +415,55 @@ export const store = new Vuex.Store({
                     commit("setErrors", error.response.data.errors);
                 });
         },
-        addNumber: ({ commit }) => {
-            alert('Work In Progress')
+        //register customer number
+        createNumber: ({ commit }, form) => {
+            axios
+                .post("/api/number/create", form)
+                .then(({ data }) => {
+                    router.push({ path: "/admin/vendors/detail/" + form.vendor_id });
+                    commit("notify", data);
+                })
+                .catch(error => {
+                    console.log(error)
+                    commit("setErrors", error.response.data.errors);
+                });
+        },
+        //delete customer number
+        deleteNumber: ({ commit,dispatch }, id) => {
+            Vue.swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios
+                        .delete("/api/number/delete/" + id)
+                        .then(({ data }) => {
+                            commit("notifyDelete", data);
+                            dispatch('getUnitVendor' , data.vendor_id);
+                        })
+                        .catch(error => {
+                            console.log(error)
+                            commit("setErrors", error.response.data.errors);
+                        });
+                }
+            })
+
+        },
+        getCustomers: ({ commit }) => {
+            axios
+                .post("/api/admin/get_customers")
+                .then(({ data }) => {
+                    commit("setCustomers", data)
+                })
+                .catch(error => {
+                    console.log(error)
+                    commit("setErrors", error.response.data.errors);
+                });
         },
         //END OF AUTHENTICATION METHODS
         clearUnitError: ({ commit }, unit_error) => {

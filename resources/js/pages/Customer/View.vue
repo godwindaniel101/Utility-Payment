@@ -41,6 +41,14 @@
             >
               Complain
             </router-link>
+             <router-link
+              to="/customer/report"
+              v-on:click="select('performance')"
+              class="rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full"
+              :class="$route.fullPath == '/customer/report' ? 'bg-indigo-700' : ''"
+            >
+              Report
+            </router-link>
             <button
               href="#performance"
               @click="$store.dispatch('logoutUser')"

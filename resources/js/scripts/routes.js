@@ -17,20 +17,27 @@ const AdminVendorsIndex = resolve => require(['../pages/Admin/Vendors/Index'], r
 const AdminVendorsAdd = resolve => require(['../pages/Admin/Vendors/Add'], resolve);
 const AdminVendorsDetail = resolve => require(['../pages/Admin/Vendors/Detail'], resolve);
 const AdminVendorsBill = resolve => require(['../pages/Admin/Vendors/Bill'], resolve);
-
-const AdminCustomers = resolve => require(['../pages/Admin/Customers'], resolve);
+const AdminVendorsNumber = resolve => require(['../pages/Admin/Vendors/Number'], resolve);
+const AdminReportView = resolve => require(['../pages/Admin/Report/View'], resolve);
+const AdminReportIndex = resolve => require(['../pages/Admin/Report/Index'], resolve);
+const AdminCustomerView = resolve => require(['../pages/Admin/Customer/Index'], resolve);
+const AdminCustomerIndex = resolve => require(['../pages/Admin/Customer/Index'], resolve);
 // end admin routes
 
 
 // start Customer routes
 const CustomerView = resolve => require(['../pages/Customer/View'], resolve);
 const CustomerIndex = resolve => require(['../pages/Customer/Index'], resolve);
-const CustomerTopUp = resolve => require(['../pages/Customer/TopUp'], resolve);
-const CustomerPayNow = resolve => require(['../pages/Customer/PayNow'], resolve);
+const CustomerTopUpView = resolve => require(['../pages/Customer/TopUp/View'], resolve);
+const CustomerTopUpIndex = resolve => require(['../pages/Customer/TopUp/Index'], resolve);
+const CustomerTopUpIndexData = resolve => require(['../pages/Customer/TopUp/IndexData'], resolve);
+const CustomerTopUpPay = resolve => require(['../pages/Customer/TopUp/Pay'], resolve);
 const CustomerPayment = resolve => require(['../pages/Customer/Payment'], resolve);
-const CustomerTopUpData = resolve => require(['../pages/Customer/TopUpData'], resolve);
-const CustomerComplain = resolve => require(['../pages/Customer/Complain'], resolve);
-const CustomerComplainAdd = resolve => require(['../pages/Customer/AddComplain'], resolve);
+const CustomerComplainView = resolve => require(['../pages/Customer/Complain/View'], resolve);
+const CustomerComplainIndex = resolve => require(['../pages/Customer/Complain/Index'], resolve);
+const CustomerComplainAdd = resolve => require(['../pages/Customer/Complain/Add'], resolve);
+const CustomerReportView = resolve => require(['../pages/Admin/Report/View'], resolve);
+const CustomerReportIndex = resolve => require(['../pages/Admin/Report/Index'], resolve);
 // end Customer routes
 
 
@@ -55,15 +62,30 @@ export const routes = [
                 children: [
                     { path: '', component: AdminIndex },
                     { path: 'complains', component: AdminComplains },
-                    { path: 'payments', component: AdminPayments },
-                    { path: 'vendors', component: AdminVendors,
-                    children: [
-                        { path: '', component: AdminVendorsIndex },
-                        { path: 'add', component: AdminVendorsAdd },
-                        { path: 'edit/:id', component: AdminVendorsAdd },
-                        { path: 'detail/:id', component: AdminVendorsDetail },
-                        { path: 'detail/:id/bill', component: AdminVendorsBill },
-                    ] },
+                    { path: 'complains', component: AdminComplains },
+                    {
+                        path: 'report', component: AdminReportView,
+                        children: [
+                            { path: '', component: AdminReportIndex },
+                        ]
+                    },
+                    {
+                        path: 'customer', component: AdminCustomerView,
+                        children: [
+                            { path: '', component: AdminCustomerIndex },
+                        ]
+                    },
+                    {
+                        path: 'vendors', component: AdminVendors,
+                        children: [
+                            { path: '', component: AdminVendorsIndex },
+                            { path: 'add', component: AdminVendorsAdd },
+                            { path: 'edit/:id', component: AdminVendorsAdd },
+                            { path: 'detail/:id', component: AdminVendorsDetail },
+                            { path: 'detail/:id/bill', component: AdminVendorsBill },
+                            { path: 'detail/:id/number', component: AdminVendorsNumber },
+                        ]
+                    },
                 ]
             },
             {
@@ -71,12 +93,28 @@ export const routes = [
                 component: CustomerView,
                 children: [
                     { path: '', component: CustomerIndex },
-                    { path: 'top-up', component: CustomerTopUp },
-                    { path: 'top-up/:id', component: CustomerTopUpData },
-                    { path: 'pay-now/:id', component: CustomerPayNow },
+                    {
+                        path: 'top-up', component: CustomerTopUpView,
+                        children: [
+                            { path: '', component: CustomerTopUpIndex },
+                            { path: ':id', component: CustomerTopUpIndexData },
+                            { path: 'pay:id', component: CustomerTopUpPay },
+                        ]
+                    },
+                    {
+                        path: 'complain', component: CustomerComplainView,
+                        children: [
+                            { path: '', component: CustomerComplainIndex },
+                            { path: 'add', component: CustomerComplainAdd },
+                        ]
+                    },
+                    {
+                        path: 'report', component: CustomerReportView,
+                        children: [
+                            { path: '', component: CustomerReportIndex },
+                        ]
+                    },
                     { path: 'payment', component: CustomerPayment },
-                    { path: 'complain', component: CustomerComplain },
-                    { path: 'complain/add', component: CustomerComplainAdd },
                 ]
             }
 
