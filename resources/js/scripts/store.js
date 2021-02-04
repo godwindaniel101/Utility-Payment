@@ -43,6 +43,8 @@ export const store = new Vuex.Store({
         user_complain: '',
         all_complain: '',
         all_customers:'',
+        customers_detail:'',
+        user_bill:'',
     },
     getters: {
         getErrors: state => {
@@ -83,6 +85,14 @@ export const store = new Vuex.Store({
         },
         getCustomers: state => {
             return (state.all_customers)
+            //set default style across table
+        },
+        getCustomerDetail: state => {
+            return (state.customers_detail)
+            //set default style across table
+        },
+        getUserBill: state => {
+            return (state.user_bill)
             //set default style across table
         },
     },
@@ -156,6 +166,12 @@ export const store = new Vuex.Store({
             state.all_customers = data;
             //clear unit error
         },
+        setCustomerDetail:(state,data)=>{
+            state.customers_detail =data
+        },
+        setUserBill:(state,data)=>{
+            state.user_bill =data
+        }
     },
     actions: {
         clearAllError: ({ commit }) => {
@@ -454,11 +470,48 @@ export const store = new Vuex.Store({
             })
 
         },
+        //get all customer
         getCustomers: ({ commit }) => {
             axios
                 .post("/api/admin/get_customers")
                 .then(({ data }) => {
                     commit("setCustomers", data)
+                })
+                .catch(error => {
+                    console.log(error)
+                    commit("setErrors", error.response.data.errors);
+                });
+        },
+        // get each customer detail
+        getCustomerDetail: ({ commit },id) => {
+            axios
+                .get("/api/admin/get_customer_detail/"+ id)
+                .then(({ data }) => {
+                    commit("setCustomerDetail", data)
+                })
+                .catch(error => {
+                    console.log(error)
+                    commit("setErrors", error.response.data.errors);
+                });
+        },
+        //issue Bill
+        issueBill: ({ commit },data) => {
+            axios
+                .post("/api/bill/issue_bill", data)
+                .then(({ data }) => {
+                    commit("notify", data);
+                    router.push({ path: "/admin/customer" });
+                })
+                .catch(error => {
+                    console.log(error)
+                    commit("setErrors", error.response.data.errors);
+                });
+        },
+        getUserBill: ({ commit }) => {
+            axios
+                .get("/api/bill/user_bill")
+                .then(({ data }) => {
+                    commit("setUserBill", data)
                 })
                 .catch(error => {
                     console.log(error)

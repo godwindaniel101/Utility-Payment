@@ -45,6 +45,8 @@ Route::group([
     Route::post('paybill', 'api\BillController@paybill');
     Route::get('user_payment', 'api\BillController@getUserPayment');
     Route::get('all_payment', 'api\BillController@getPayment');
+    Route::post('issue_bill', 'api\BillController@issueBill');
+    Route::get('user_bill', 'api\BillController@userBill');
 });
 Route::group([
     'prefix' => 'number',
@@ -67,4 +69,5 @@ Route::group([
     'middleware' => 'auth:api'
 ], function () {
     Route::post('get_customers', 'api\AdminController@getCustomers');
+    Route::get('get_customer_detail/{id}', 'api\AdminController@getCustomersDetail');
 });

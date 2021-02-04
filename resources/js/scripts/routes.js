@@ -20,8 +20,9 @@ const AdminVendorsBill = resolve => require(['../pages/Admin/Vendors/Bill'], res
 const AdminVendorsNumber = resolve => require(['../pages/Admin/Vendors/Number'], resolve);
 const AdminReportView = resolve => require(['../pages/Admin/Report/View'], resolve);
 const AdminReportIndex = resolve => require(['../pages/Admin/Report/Index'], resolve);
-const AdminCustomerView = resolve => require(['../pages/Admin/Customer/Index'], resolve);
+const AdminCustomerView = resolve => require(['../pages/Admin/Customer/View'], resolve);
 const AdminCustomerIndex = resolve => require(['../pages/Admin/Customer/Index'], resolve);
+const AdminCustomerIssueBill = resolve => require(['../pages/Admin/Customer/IssueBill'], resolve);
 // end admin routes
 
 
@@ -36,8 +37,10 @@ const CustomerPayment = resolve => require(['../pages/Customer/Payment'], resolv
 const CustomerComplainView = resolve => require(['../pages/Customer/Complain/View'], resolve);
 const CustomerComplainIndex = resolve => require(['../pages/Customer/Complain/Index'], resolve);
 const CustomerComplainAdd = resolve => require(['../pages/Customer/Complain/Add'], resolve);
-const CustomerReportView = resolve => require(['../pages/Admin/Report/View'], resolve);
-const CustomerReportIndex = resolve => require(['../pages/Admin/Report/Index'], resolve);
+const CustomerReportView = resolve => require(['../pages/Customer/Report/View'], resolve);
+const CustomerReportIndex = resolve => require(['../pages/Customer/Report/Index'], resolve);
+const CustomerBillView = resolve => require(['../pages/Customer/Bill/View'], resolve);
+const CustomerBillIndex = resolve => require(['../pages/Customer/Bill/Index'], resolve);
 // end Customer routes
 
 
@@ -73,6 +76,7 @@ export const routes = [
                         path: 'customer', component: AdminCustomerView,
                         children: [
                             { path: '', component: AdminCustomerIndex },
+                            {path:'issue_bill/:id', component: AdminCustomerIssueBill },
                         ]
                     },
                     {
@@ -112,6 +116,13 @@ export const routes = [
                         path: 'report', component: CustomerReportView,
                         children: [
                             { path: '', component: CustomerReportIndex },
+                        ]
+                    },
+                    {
+                        path: 'bill', component: CustomerBillView,
+                        children: [
+                            { path: '', component: CustomerBillIndex },
+                            { path: ':id', component: CustomerTopUpIndex },
                         ]
                     },
                     { path: 'payment', component: CustomerPayment },

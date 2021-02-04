@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Bill;
 use Exception;
 use App\Payment;
+use App\IssuedBill;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -20,7 +21,7 @@ class BillController extends Controller
             Bill::create([
                 'name' => $request->name,
                 'ref_number' => $request->ref_number,
-                'vendor_id'=> $request->vendor_id
+                'vendor_id' => $request->vendor_id
             ]);
             return response()->json(['message' => 'Bill Created', 'status' => 'success'], 201);
         } catch (Exception $e) {
@@ -33,12 +34,13 @@ class BillController extends Controller
         try {
             $data = Bill::find($id);
             $data->delete();
-            return response()->json(['message' => 'Bill Deleted', 'status' => 'success','vendor_id' =>$data->vendor_id], 201);
+            return response()->json(['message' => 'Bill Deleted', 'status' => 'success', 'vendor_id' => $data->vendor_id], 201);
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
         }
     }
-    public function paybill(Request $request){
+    public function paybill(Request $request)
+    {
         $this->validate($request, [
             'phone_no' => 'required',
             'amount' => 'required|string',
@@ -49,19 +51,55 @@ class BillController extends Controller
                 'phone_no' =>  $request->phone_no,
                 'amount' =>  $request->amount,
                 'description' =>  $request->description,
-                'user_id'=>auth('api')->user()->id
+                'user_id' => auth('api')->user()->id
             ]);
             return response()->json(['message' => 'Payment Made', 'status' => 'success'], 201);
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
         }
     }
-    public function getUserPayment() {
-        $data =  Payment::where('user_id', auth('api')->user()->id)->get();
-        return response()->json($data, 201);
+    public function getUserPayment()
+    {
+        try {
+            $data =  Payment::where('user_id', auth('api')->user()->id)->get();
+            return response()->json($data, 201);
+        } catch (Exception $e) {
+            return response()->json($e->getMessage(), 500);
+        }
     }
-    public function getPayment() {
-        $data =  Payment::with('user')->get();
-        return response()->json($data, 201);
+    public function getPayment()
+    {
+        try {
+            $data =  Payment::with('user')->get();
+            return response()->json($data, 201);
+        } catch (Exception $e) {
+            return response()->json($e->getMessage(), 500);
+        }
+    }
+    public function issueBill(Request $request)
+    {
+        $this->validate($request, [
+            'customer_id' => 'required',
+            'customer_name' => 'required|string',
+            'amount' => 'required|string',
+        ]);
+        try {
+            IssuedBill::create([
+                'customer_id' => $request->customer_id,
+                'amount' => $request->amount,
+                'description' => $request->description,
+            ]);
+            return response()->json(['message' => 'Bill Issued', 'status' => 'success'], 201);
+        } catch (Exception $e) {
+            return response()->json($e->getMessage(), 500);
+        }
+    }
+    public function userBill(){
+        try {
+         $data =  IssuedBill::where('customer_id' , auth('api')->user()->id)->get();
+         return response()->json($data,201);
+        } catch (Exception $e) {
+            return response()->json($e->getMessage(), 500);
+        }
     }
 }

@@ -26,6 +26,13 @@
             >
               Top Up
             </router-link>
+             <router-link
+              to="/customer/bill"
+              class="rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full"
+              :class="$route.fullPath == '/customer/bill' ? 'bg-indigo-700' : ''"
+            >
+              Bill
+            </router-link>
                <router-link
               to="/customer/payment"
               class="rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full"

@@ -13,6 +13,10 @@ class AdminController extends Controller
         $data = User::where('user_type','customer')->get();
         return response()->json($data);
     }
+    public function getCustomersDetail($id){
+        $data = User::where('id',$id)->first();
+        return response()->json($data);
+    }
     public function createDefaultAccess(Request $request)
     {
 

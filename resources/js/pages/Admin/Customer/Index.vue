@@ -48,11 +48,12 @@
           <td
             class="w-4/12 sm:w-1/3 p-2 border-gray-300 border border-r-0 border-t-0"
           >
-            <button
+            <router-link :to="'/admin/customer/issue_bill/'+data.id"
+            tag="button"
               class="hover:bg-light-red-200 bg-red-200 hover:text-light-blue-800 group text-center rounded-sm text-white-800 text-sm font-medium px-2 py-2"
             >
               Issue Bill
-            </button>
+            </router-link>
           </td>
         </tr>
       </tbody>

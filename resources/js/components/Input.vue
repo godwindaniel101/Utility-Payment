@@ -11,6 +11,7 @@
       :value="value"
       class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
       :placeholder="placeholder"
+      :disabled="disabled"
       :class="
         getErrors[error] != null &&  getErrors[error] != [] &&  getErrors[error] != ''
           ? extra_class +' '+ 'border border-red-500'
@@ -25,7 +26,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  props: ["extra_class", "placeholder", "type", "id", "label", "error",'value'],
+  props: ["extra_class", "placeholder", "type", "id", "label", "error",'value','disabled'],
   data() {
     return { vm_data: "" };
   },
