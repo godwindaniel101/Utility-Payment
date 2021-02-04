@@ -1,34 +1,40 @@
 <template>
-  <div class="bg-white shadow overflow-hidden w-full">
- 
-    <div class="border-t border-gray-200">
-      <dl>
-        <div
-          class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 flex flex-row justify-center align-center"
-        >
-          <dt class="text-sm font-medium text-gray-500">Bill Name</dt>
-          <dd class="mt-1 flex-auto  text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex flex-row justify-center d_center">
-            Action
-          </dd>
-        </div>
-        <div
-        v-for="bill in getUnitVendor.bill" :key="bill.id"
-          class="bg-white-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 d_center "
-        >
-          <dt class="text-sm font-medium text-gray-500 d_center ">{{bill.name}}</dt>
-          <dd class="mt-1 flex-auto  text-sm text-gray-900 sm:mt-0 sm:col-span-2 flex flex-row justify-center d_center">
-          
-             <router-link
+  <section
+        class="px-4 sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4"
+    >
+       <header class="flex items-center justify-between">
+            <h2 class="text-lg leading-6 font-medium text-black">Payment Records</h2>
+        </header>
+    <table class='shadow-md rounded w-full'>
+  <thead class='sticky block top-0' scope='col'>
+    <tr class='flex text-left '>
+      <th scope='col' class='w-4/12 sm:w-1/3 p-2 border bg-white border-r-0 border-gray-300 font-normal'>
+        <h4 class='u-slab'>Payment Method</h4>
+      </th>
+      <th scope='col' class='w-8/12 sm:w-2/3 p-2 border bg-white border-r-0 border-gray-300 font-normal'>
+        <h4 class='u-slab'>Action</h4>
+     </th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <tr class='flex text-left text-sm flex-wrap sm:no-wrap '  v-for="bill in getUnitVendor.bill" :key="bill.id">
+      <td class='w-4/12 sm:w-1/3 p-2 border-gray-300 border border-r-0 border-t-0'>{{bill.name}}</td>
+      <td class='w-8/12 sm:w-2/3 p-2 border-gray-300 border border-r-0 border-t-0'>
+           <router-link
          :to="'/customer/top-up/pay/'+bill.id"
-          class="hover:bg-light-red-200 bg-red-200 hover:text-light-blue-800 group text-center flex items-center rounded-sm text-white-800 text-sm font-medium px-2 py-2 mt-2"
-        >
+         tag="button"
+           class="hover:bg-light-blue-200 bg-red-200 hover:text-light-blue-800 group text-center rounded-sm text-white-800 text-sm font-medium px-2 py-2"
+               >
              Pay Now
         </router-link>
-          </dd>
-        </div>
-      </dl>
-    </div>
-  </div>
+        </td>
+    </tr>
+   
+  </tbody>
+</table>
+  </section>
 </template>
 <script>
 import { mapGetters } from "vuex";

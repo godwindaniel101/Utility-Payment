@@ -51,7 +51,8 @@ class BillController extends Controller
                 'phone_no' =>  $request->phone_no,
                 'amount' =>  $request->amount,
                 'description' =>  $request->description,
-                'user_id' => auth('api')->user()->id
+                'user_id' => auth('api')->user()->id,
+                'bill_ref_id'=>$request->bill_ref_id ??$request->bill_ref_id
             ]);
             return response()->json(['message' => 'Payment Made', 'status' => 'success'], 201);
         } catch (Exception $e) {

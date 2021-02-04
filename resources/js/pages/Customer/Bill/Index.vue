@@ -30,17 +30,17 @@
       <td class='w-3/12 sm:w-1/4 p-2 border-gray-300 border border-r-0 border-t-0'>{{data.amount}}</td>
       <td class='w-3/12 sm:w-1/4 p-2 border-gray-300 border border-r-0 border-t-0'>{{data.description}}</td>
       <td class='w-3/12 sm:w-1/4 p-2 border-gray-300 border border-r-0 border-t-0'>
-       <svg v-if="data.is_payed" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" class='text-indigo-700 m-auto' stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+       <svg v-if="data.is_payed" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" class='text-indigo-700' stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
            <title id="catTitle">Relevant package title ( too many to add )</title>
           <path d="M20 6L9 17l-5-5"/>
         </svg>
       </td>
       <td class='w-3/12 sm:w-1/4 p-2 border-gray-300 border border-r-0 border-t-0'>
-             <router-link :to="'/customer/bill/'+data.id" tag="button"
+             <button @click="$store.dispatch('setBillCart',data)"
                 class="hover:bg-light-blue-200 bg-red-200 hover:text-light-blue-800 group text-center rounded-sm text-white-800 text-sm font-medium px-2 py-2"
               >
                 Pay Now
-              </router-link>
+              </button>
       </td>
     </tr>
    

@@ -102,7 +102,7 @@ export const routes = [
                         children: [
                             { path: '', component: CustomerTopUpIndex },
                             { path: ':id', component: CustomerTopUpIndexData },
-                            { path: 'pay:id', component: CustomerTopUpPay },
+                            { path: 'pay/:id', component: CustomerTopUpPay },
                         ]
                     },
                     {

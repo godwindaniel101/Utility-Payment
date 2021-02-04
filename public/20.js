@@ -9,6 +9,13 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -81,19 +88,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      form: {},
+      form: {
+        amount: "",
+        description: ""
+      },
       edit_mode: false
     };
   },
   mounted: function mounted() {
     this.form.bill_id = this.$route.params.id;
   },
-  computed: {}
+  watch: {
+    getBillCart: function getBillCart() {
+      this.form.amount = this.getBillCart["amount"];
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getBillCart"]))
 });
 
 /***/ }),
@@ -116,8 +130,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass:
-        " flex items-center justify-center  py-2 px-4 sm:px-2 lg:px-2"
+      staticClass: "flex items-center justify-center py-2 px-4 sm:px-2 lg:px-2"
     },
     [
       _c("div", { staticClass: "max-w-md w-full space-y-8" }, [
@@ -237,7 +250,7 @@ var render = function() {
                       )
                     ]
                   ),
-                  _vm._v("\n         Pay Vendor\n        ")
+                  _vm._v("\n          Pay Vendor\n        ")
                 ]
               )
             ])
@@ -256,7 +269,7 @@ var staticRenderFns = [
       _c(
         "h2",
         { staticClass: "mt-6 text-center text-3xl font-bold text-gray-900" },
-        [_vm._v("\n       Pay Now\n      ")]
+        [_vm._v("\n        Pay Now\n      ")]
       )
     ])
   }

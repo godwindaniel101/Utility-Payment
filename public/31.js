@@ -152,7 +152,7 @@ var render = function() {
                       ? _c(
                           "svg",
                           {
-                            staticClass: "text-indigo-700 m-auto",
+                            staticClass: "text-indigo-700",
                             attrs: {
                               xmlns: "http://www.w3.org/2000/svg",
                               width: "24",
@@ -186,19 +186,19 @@ var render = function() {
                   },
                   [
                     _c(
-                      "router-link",
+                      "button",
                       {
                         staticClass:
                           "hover:bg-light-blue-200 bg-red-200 hover:text-light-blue-800 group text-center rounded-sm text-white-800 text-sm font-medium px-2 py-2",
-                        attrs: {
-                          to: "/customer/bill/" + data.id,
-                          tag: "button"
+                        on: {
+                          click: function($event) {
+                            return _vm.$store.dispatch("setBillCart", data)
+                          }
                         }
                       },
                       [_vm._v("\n                Pay Now\n              ")]
                     )
-                  ],
-                  1
+                  ]
                 )
               ]
             )

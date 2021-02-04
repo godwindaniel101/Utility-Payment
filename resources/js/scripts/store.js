@@ -42,9 +42,10 @@ export const store = new Vuex.Store({
         all_payments: '',
         user_complain: '',
         all_complain: '',
-        all_customers:'',
-        customers_detail:'',
-        user_bill:'',
+        all_customers: '',
+        customers_detail: '',
+        user_bill: '',
+        bill_cart: '',
     },
     getters: {
         getErrors: state => {
@@ -93,6 +94,10 @@ export const store = new Vuex.Store({
         },
         getUserBill: state => {
             return (state.user_bill)
+            //set default style across table
+        },
+        getBillCart: state => {
+            return (state.bill_cart)
             //set default style across table
         },
     },
@@ -166,11 +171,14 @@ export const store = new Vuex.Store({
             state.all_customers = data;
             //clear unit error
         },
-        setCustomerDetail:(state,data)=>{
-            state.customers_detail =data
+        setCustomerDetail: (state, data) => {
+            state.customers_detail = data
         },
-        setUserBill:(state,data)=>{
-            state.user_bill =data
+        setUserBill: (state, data) => {
+            state.user_bill = data
+        },
+        setBillCart: (state, data) => {
+            state.bill_cart = data
         }
     },
     actions: {
@@ -332,7 +340,7 @@ export const store = new Vuex.Store({
                 });
         },
         //delete billing type record
-        deleteBill: ({ commit,dispatch }, id) => {
+        deleteBill: ({ commit, dispatch }, id) => {
             Vue.swal({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -347,7 +355,7 @@ export const store = new Vuex.Store({
                         .delete("/api/bill/delete/" + id)
                         .then(({ data }) => {
                             commit("notifyDelete", data);
-                            dispatch('getUnitVendor' , data.vendor_id);
+                            dispatch('getUnitVendor', data.vendor_id);
                         })
                         .catch(error => {
                             console.log(error)
@@ -358,11 +366,18 @@ export const store = new Vuex.Store({
 
         },
         //pay bill
-        payBill: ({ commit }, data) => {
+        payBill: ({ commit, getters }, data) => {
+
+            //check if a bill data is already stored and pending
+            var bill_data = getters('getBillCart')
+            if(bill_data != null && bill_data != []){
+                data['bill_ref_id'] = bill_cart['id'];
+            }
             axios
                 .post("/api/bill/paybill", data)
                 .then(({ data }) => {
                     commit("notify", data);
+                    commit('setBillCart', [])
                     router.push({ path: "/customer" });
                 })
                 .catch(error => {
@@ -445,7 +460,7 @@ export const store = new Vuex.Store({
                 });
         },
         //delete customer number
-        deleteNumber: ({ commit,dispatch }, id) => {
+        deleteNumber: ({ commit, dispatch }, id) => {
             Vue.swal({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -460,7 +475,7 @@ export const store = new Vuex.Store({
                         .delete("/api/number/delete/" + id)
                         .then(({ data }) => {
                             commit("notifyDelete", data);
-                            dispatch('getUnitVendor' , data.vendor_id);
+                            dispatch('getUnitVendor', data.vendor_id);
                         })
                         .catch(error => {
                             console.log(error)
@@ -483,9 +498,9 @@ export const store = new Vuex.Store({
                 });
         },
         // get each customer detail
-        getCustomerDetail: ({ commit },id) => {
+        getCustomerDetail: ({ commit }, id) => {
             axios
-                .get("/api/admin/get_customer_detail/"+ id)
+                .get("/api/admin/get_customer_detail/" + id)
                 .then(({ data }) => {
                     commit("setCustomerDetail", data)
                 })
@@ -495,7 +510,7 @@ export const store = new Vuex.Store({
                 });
         },
         //issue Bill
-        issueBill: ({ commit },data) => {
+        issueBill: ({ commit }, data) => {
             axios
                 .post("/api/bill/issue_bill", data)
                 .then(({ data }) => {
@@ -517,6 +532,10 @@ export const store = new Vuex.Store({
                     console.log(error)
                     commit("setErrors", error.response.data.errors);
                 });
+        },
+        setBillCart: ({ commit }, data) => {
+            router.push({ path: "/customer/bill/" + data.id });
+            commit('setBillCart', data)
         },
         //END OF AUTHENTICATION METHODS
         clearUnitError: ({ commit }, unit_error) => {

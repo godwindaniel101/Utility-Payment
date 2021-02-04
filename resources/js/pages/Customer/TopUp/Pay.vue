@@ -1,16 +1,14 @@
 <template>
-  <div
-    class=" flex items-center justify-center  py-2 px-4 sm:px-2 lg:px-2"
-  >
+  <div class="flex items-center justify-center py-2 px-4 sm:px-2 lg:px-2">
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">
-         Pay Now
+          Pay Now
         </h2>
       </div>
       <form
         class="mt-4 space-y-3"
-        @submit.prevent="$store.dispatch('payBill' , form)"
+        @submit.prevent="$store.dispatch('payBill', form)"
       >
         <input type="hidden" name="remember" value="true" />
         <div class="rounded-md shadow-sm -space-y-px">
@@ -65,7 +63,7 @@
                 />
               </svg>
             </span>
-           Pay Vendor
+            Pay Vendor
           </button>
         </div>
       </form>
@@ -73,17 +71,24 @@
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      form: {},
-      edit_mode:false
+      form: { amount: "", description: "" },
+      edit_mode: false,
     };
   },
   mounted() {
     this.form.bill_id = this.$route.params.id;
   },
-    computed: {
+  watch: {
+    getBillCart() {
+      this.form.amount = this.getBillCart["amount"];
+    },
+  },
+  computed: {
+    ...mapGetters(["getBillCart"]),
   },
 };
 </script>

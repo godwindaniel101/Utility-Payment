@@ -31927,7 +31927,7 @@ var routes = [{
         path: ':id',
         component: CustomerTopUpIndexData
       }, {
-        path: 'pay:id',
+        path: 'pay/:id',
         component: CustomerTopUpPay
       }]
     }, {
@@ -32029,7 +32029,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     all_complain: '',
     all_customers: '',
     customers_detail: '',
-    user_bill: ''
+    user_bill: '',
+    bill_cart: ''
   },
   getters: {
     getErrors: function getErrors(state) {
@@ -32067,6 +32068,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     getUserBill: function getUserBill(state) {
       return state.user_bill; //set default style across table
+    },
+    getBillCart: function getBillCart(state) {
+      return state.bill_cart; //set default style across table
     }
   },
   mutations: {
@@ -32126,6 +32130,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     setUserBill: function setUserBill(state, data) {
       state.user_bill = data;
+    },
+    setBillCart: function setBillCart(state, data) {
+      state.bill_cart = data;
     }
   },
   actions: {
@@ -32317,10 +32324,19 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     //pay bill
     payBill: function payBill(_ref23, data) {
-      var commit = _ref23.commit;
+      var commit = _ref23.commit,
+          getters = _ref23.getters;
+      //check if a bill data is already stored and pending
+      var bill_data = getters('getBillCart');
+
+      if (bill_data != null && bill_data != []) {
+        data['bill_ref_id'] = bill_cart['id'];
+      }
+
       axios.post("/api/bill/paybill", data).then(function (_ref24) {
         var data = _ref24.data;
         commit("notify", data);
+        commit('setBillCart', []);
         _guard__WEBPACK_IMPORTED_MODULE_2__["router"].push({
           path: "/customer"
         });
@@ -32472,9 +32488,16 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
         commit("setErrors", error.response.data.errors);
       });
     },
-    //END OF AUTHENTICATION METHODS
-    clearUnitError: function clearUnitError(_ref47, unit_error) {
+    setBillCart: function setBillCart(_ref47, data) {
       var commit = _ref47.commit;
+      _guard__WEBPACK_IMPORTED_MODULE_2__["router"].push({
+        path: "/customer/bill/" + data.id
+      });
+      commit('setBillCart', data);
+    },
+    //END OF AUTHENTICATION METHODS
+    clearUnitError: function clearUnitError(_ref48, unit_error) {
+      var commit = _ref48.commit;
       commit("clearUnitError", unit_error);
     },
     capitalizeText: function capitalizeText(value) {
