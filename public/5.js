@@ -103,13 +103,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       info: null,
-      active: "performance"
+      active: "performance",
+      userDetail: ''
     };
   },
   methods: {
     select: function select(x) {
       this.active = x;
       console.log(x); // returns 'foo'
+    }
+  },
+  watch: {
+    getUserDetail: function getUserDetail() {
+      this.userDetail = this.getUserDetail;
     }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getUserDetail"]))
@@ -155,7 +161,7 @@ var render = function() {
                 [
                   _vm._v(
                     "\n        Hello ! " +
-                      _vm._s(_vm.getUserDetail["user_name"]) +
+                      _vm._s(_vm.userDetail["user_name"]) +
                       "\n      "
                   )
                 ]

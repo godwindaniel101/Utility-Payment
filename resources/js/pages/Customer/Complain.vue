@@ -44,7 +44,7 @@
       <tbody>
         <tr
           class="flex text-left text-sm flex-wrap sm:no-wrap"
-          v-for="data in getUserComplain"
+          v-for="data in userComplain"
           :key="data.id"
         >
           <td
@@ -67,6 +67,14 @@ import { mapGetters } from "vuex";
 export default {
   mounted() {
     this.$store.dispatch("getUserComplain");
+  },
+  data() {
+    return { userComplain: "" };
+  },
+  watch: {
+    getUserComplain() {
+      this.userComplain = this.getUserComplain;
+    },
   },
   computed: {
     ...mapGetters(["getUserComplain"]),

@@ -67,6 +67,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     this.$store.dispatch("getComplain");
   },
+  watch: {
+    getComplain: function getComplain() {
+      this.complain = this.getComplain;
+    }
+  },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getComplain"]))
 });
 
@@ -101,7 +106,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.getComplain, function(data) {
+          _vm._l(_vm.complain, function(data) {
             return _c(
               "tr",
               {

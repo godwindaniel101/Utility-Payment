@@ -27802,19 +27802,32 @@ var axiosControl = function axiosControl() {
     return response;
   }, function (error) {
     if (error.response.status == 401) {
-      //check for attempt on unauthorized routes
       localStorage.clear();
       window.location = "/login?prev_href=" + window.location.href;
-      return response;
+      throw error;
     }
 
     if (!window.navigator.onLine) {
       window.location = "/oops";
-      return response;
+      throw error;
     }
 
-    return response;
-  });
+    throw error;
+  }); // axios.interceptors.response.use(function (response) {
+  //   return response;
+  // }, function (error) {
+  //   if (error.response.status == 401) {
+  //       //check for attempt on
+  //     localStorage.clear();
+  //     window.location = "/login?prev_href="+window.location.href;
+  //     return response;
+  //   }
+  //   if (!window.navigator.onLine) {
+  //      window.location = "/oops";
+  //     return response;
+  //   }
+  //   return Promise.reject(error);
+  // });
 };
 /* harmony default export */ __webpack_exports__["default"] = (axiosControl());
 
@@ -28286,6 +28299,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 
         commit("setErrors", []);
       })["catch"](function (error) {
+        console.log(error);
         commit("setErrors", error.response.data.errors);
       });
     },

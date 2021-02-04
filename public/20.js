@@ -59,7 +59,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   mounted: function mounted() {
     this.$store.dispatch("getUnitVendor", this.$route.params.id);
-    this.vendor = this.getUnitVendor;
+  },
+  watch: {
+    getUnitVendor: function getUnitVendor() {
+      this.vendor = this.getUnitVendor;
+    }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getUnitVendor"]))
 });

@@ -186,6 +186,7 @@ export const store = new Vuex.Store({
                     commit("setErrors", []);
                 })
                 .catch(error => {
+                    console.log(error);
                     commit("setErrors", error.response.data.errors);
                 });
         },

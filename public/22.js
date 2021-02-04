@@ -64,6 +64,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     this.$store.dispatch('getUserPayment');
   },
+  data: function data() {
+    return {
+      userPayment: ""
+    };
+  },
+  watch: {
+    getUserPayment: function getUserPayment() {
+      this.userPayment = this.getUserPayment;
+    }
+  },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getUserPayment"]))
 });
 
@@ -98,7 +108,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.getUserPayment, function(data) {
+          _vm._l(_vm.userPayment, function(data) {
             return _c(
               "tr",
               {

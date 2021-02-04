@@ -40,7 +40,11 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getUnitVendor", this.$route.params.id);
-    this.vendor = this.getUnitVendor;
+  },
+    watch: {
+    getUnitVendor() {
+      this.vendor = this.getUnitVendor;
+    },
   },
   computed: {
     ...mapGetters(["getUnitVendor"]),

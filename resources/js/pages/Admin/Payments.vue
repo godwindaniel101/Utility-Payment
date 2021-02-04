@@ -26,7 +26,7 @@
   <tbody>
 
    
-    <tr class='flex text-left text-sm flex-wrap sm:no-wrap ' v-for="data in getPayment" :key="data.id">
+    <tr class='flex text-left text-sm flex-wrap sm:no-wrap ' v-for="data in payment" :key="data.id">
       <td class='w-3/12 sm:w-1/4 p-2 border-gray-300 border border-r-0 border-t-0'>{{data.user.name}}</td>
       <td class='w-3/12 sm:w-1/4 p-2 border-gray-300 border border-r-0 border-t-0'>{{data.amount}}</td>
       <td class='w-3/12 sm:w-1/4 p-2 border-gray-300 border border-r-0 border-t-0'>{{data.phone_no}}</td>
@@ -42,6 +42,16 @@ import { mapGetters } from "vuex";
 export default {
     mounted(){
         this.$store.dispatch('getPayment');
+    },
+    data(){
+      return{
+        payment:''
+      }
+    },
+    watch:{
+      getPayment(){
+this.payment = this.getPayment
+      }
     },
       computed: {
     ...mapGetters(["getPayment"]),

@@ -23,7 +23,7 @@
   <tbody>
 
    
-    <tr class='flex text-left text-sm flex-wrap sm:no-wrap ' v-for="data in getUserPayment" :key="data.id">
+    <tr class='flex text-left text-sm flex-wrap sm:no-wrap ' v-for="data in userPayment" :key="data.id">
       <td class='w-4/12 sm:w-1/3 p-2 border-gray-300 border border-r-0 border-t-0'>{{data.amount}}</td>
       <td class='w-4/12 sm:w-1/3 p-2 border-gray-300 border border-r-0 border-t-0'>{{data.phone_no}}</td>
       <td class='w-4/12 sm:w-1/3 p-2 border-gray-300 border border-r-0 border-t-0'>{{data.description}}</td>
@@ -47,9 +47,17 @@ export default {
     mounted(){
         this.$store.dispatch('getUserPayment');
     },
-      computed: {
-    ...mapGetters(["getUserPayment"]),
+     data() {
+    return { userPayment: "" };
   },
-};
-</script>
+  watch: {
+    getUserPayment() {
+      this.userPayment = this.getUserPayment;
+    },
+  },
+  computed: {
+    ...mapGetters(["getUserPayment"]),
+ 
+}
+}
 </script>

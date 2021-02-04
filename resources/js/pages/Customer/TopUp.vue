@@ -29,7 +29,7 @@
         <ul
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4"
         >
-            <li v-for="item in getVendors" :key="item.id">
+            <li v-for="item in vendors" :key="item.id">
                 <router-link
                     :to="'/customer/top-up/'+item.id"
                     class="hover:bg-light-blue-500 hover:border-transparent cursor-pointer hover:shadow-sm group block rounded-md p-4 border border-gray-200"
@@ -65,6 +65,16 @@ export default {
     mounted(){
         this.$store.dispatch('getVendors');
     },
+    data(){
+        return{
+            vendors:''
+        }
+    },
+    watch: {
+    getVendors() {
+      this.vendors = this.getVendors;
+    },
+  },
       computed: {
     ...mapGetters(["getVendors"]),
   },

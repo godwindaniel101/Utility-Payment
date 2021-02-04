@@ -143,6 +143,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     this.$store.dispatch('getVendors');
   },
+  data: function data() {
+    return {
+      vendor: ''
+    };
+  },
+  watch: {
+    getVendors: function getVendors() {
+      this.vendor = this.getVendors;
+    }
+  },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getVendors"]))
 });
 
@@ -251,7 +261,7 @@ var render = function() {
             "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4"
         },
         [
-          _vm._l(_vm.getVendors, function(item) {
+          _vm._l(_vm.vendor, function(item) {
             return _c("li", { key: item.id }, [
               _c(
                 "a",

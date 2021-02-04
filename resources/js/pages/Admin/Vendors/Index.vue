@@ -47,7 +47,7 @@
         <ul
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4"
         >
-            <li v-for="item in getVendors" :key="item.id">
+            <li v-for="item in vendor" :key="item.id">
                 <a
                     :href="item.url"
                     class="hover:bg-light-blue-500 hover:border-transparent cursor-pointer hover:shadow-sm group block rounded-md p-4 border border-gray-200"
@@ -125,6 +125,16 @@ import { mapGetters } from "vuex";
 export default {
     mounted(){
         this.$store.dispatch('getVendors');
+    },
+    data(){
+        return{
+            vendor:''
+        }
+    },
+    watch:{
+        getVendors(){
+            this.vendor = this.getVendors
+        }
     },
       computed: {
     ...mapGetters(["getVendors"]),

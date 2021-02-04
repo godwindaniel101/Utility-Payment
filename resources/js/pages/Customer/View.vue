@@ -3,7 +3,7 @@
     <aside class="w-full md:h-screen md:w-64 bg-gray-900 md:flex md:flex-col">
       <header class="border-b border-solid border-gray-800 flex-grow">
         <h1 class="py-6 px-4 text-gray-100 text-base font-medium">
-          Hello ! {{ getUserDetail["user_name"] }}
+          Hello ! {{ userDetail["user_name"] }}
         </h1>
       </header>
       <nav class="overflow-y-auto h-full flex-grow">
@@ -87,6 +87,7 @@ export default {
     return {
       info: null,
       active: "performance",
+      userDetail:''
     };
   },
   methods: {
@@ -94,6 +95,11 @@ export default {
       this.active = x;
       console.log(x); // returns 'foo'
     },
+  },
+  watch:{
+    getUserDetail(){
+      this.userDetail = this.getUserDetail
+    }
   },
   computed: {
     ...mapGetters(["getUserDetail"]),
