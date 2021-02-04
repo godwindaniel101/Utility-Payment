@@ -61,7 +61,7 @@
               height="24"
               fill="none"
               stroke="currentColor"
-              class="text-indigo-700 m-auto"
+              class="text-indigo-700"
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -76,10 +76,17 @@
             class="w-3/12 sm:w-1/4 p-2 border-gray-300 border border-r-0 border-t-0"
           >
             <button
+             v-if="!data.is_payed"
               @click="$store.dispatch('getBillCart', data)"
               class="hover:bg-light-blue-200 bg-red-200 hover:text-light-blue-800 group text-center rounded-sm text-white-800 text-sm font-medium px-2 py-2"
             >
               Pay Now
+            </button>
+            <button
+             v-else
+              class="hover:bg-light-red-50 bg-red-50 hover:text-light-blue-800 group text-center rounded-sm text-white-800 text-sm font-medium px-2 py-2"
+            disabled>
+              Paid
             </button>
           </td>
         </tr>

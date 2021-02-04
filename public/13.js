@@ -105,6 +105,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -195,7 +202,7 @@ var render = function() {
                       ? _c(
                           "svg",
                           {
-                            staticClass: "text-indigo-700 m-auto",
+                            staticClass: "text-indigo-700",
                             attrs: {
                               xmlns: "http://www.w3.org/2000/svg",
                               width: "24",
@@ -228,19 +235,29 @@ var render = function() {
                       "w-3/12 sm:w-1/4 p-2 border-gray-300 border border-r-0 border-t-0"
                   },
                   [
-                    _c(
-                      "button",
-                      {
-                        staticClass:
-                          "hover:bg-light-blue-200 bg-red-200 hover:text-light-blue-800 group text-center rounded-sm text-white-800 text-sm font-medium px-2 py-2",
-                        on: {
-                          click: function($event) {
-                            return _vm.$store.dispatch("getBillCart", data)
-                          }
-                        }
-                      },
-                      [_vm._v("\n            Pay Now\n          ")]
-                    )
+                    !data.is_payed
+                      ? _c(
+                          "button",
+                          {
+                            staticClass:
+                              "hover:bg-light-blue-200 bg-red-200 hover:text-light-blue-800 group text-center rounded-sm text-white-800 text-sm font-medium px-2 py-2",
+                            on: {
+                              click: function($event) {
+                                return _vm.$store.dispatch("getBillCart", data)
+                              }
+                            }
+                          },
+                          [_vm._v("\n            Pay Now\n          ")]
+                        )
+                      : _c(
+                          "button",
+                          {
+                            staticClass:
+                              "hover:bg-light-red-50 bg-red-50 hover:text-light-blue-800 group text-center rounded-sm text-white-800 text-sm font-medium px-2 py-2",
+                            attrs: { disabled: "" }
+                          },
+                          [_vm._v("\n            Paid\n          ")]
+                        )
                   ]
                 )
               ]
