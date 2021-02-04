@@ -245,7 +245,7 @@ var staticRenderFns = [
       _c(
         "h2",
         { staticClass: "mt-6 text-center text-3xl font-bold text-gray-900" },
-        [_vm._v("\n       New Bill\n      ")]
+        [_vm._v("\n       New Bill Type\n      ")]
       )
     ])
   }

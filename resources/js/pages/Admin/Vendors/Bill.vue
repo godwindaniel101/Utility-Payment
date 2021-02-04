@@ -5,7 +5,7 @@
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">
-         New Bill
+         New Bill Type
         </h2>
       </div>
       <form
