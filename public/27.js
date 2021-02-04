@@ -15,9 +15,31 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h4", [_vm._v("Report Module")])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "section",
+      {
+        staticClass:
+          "px-4 sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4"
+      },
+      [
+        _c("header", { staticClass: "flex items-center justify-between" }, [
+          _c(
+            "h2",
+            { staticClass: "text-lg leading-6 font-medium text-black" },
+            [_vm._v("Report Module")]
+          )
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
