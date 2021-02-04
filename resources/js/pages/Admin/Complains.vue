@@ -47,6 +47,11 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  data(){
+    return{
+      complain:''
+    }
+  },
   mounted() {
     this.$store.dispatch("getComplain");
   },
