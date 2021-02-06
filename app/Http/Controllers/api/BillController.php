@@ -135,7 +135,7 @@ class BillController extends Controller
     public function userBill()
     {
         try {
-            $data =  IssuedBill::where('customer_id', auth('api')->user()->id)->get();
+            $data =  IssuedBill::where('customer_id',auth('api')->user()->id)->get();
             return response()->json($data, 201);
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);

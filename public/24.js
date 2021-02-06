@@ -22,21 +22,49 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "_Xsdds" }, [
-      _c("p", [_vm._v("DashBoard")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Create Vendor")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Create Vendor Bill System")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Balance History")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Complain")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Authentication System")]),
-      _vm._v(" "),
-      _c("p", [_c("strong", [_vm._v("Built with Tailwind")])])
-    ])
+    return _c(
+      "div",
+      { staticClass: "w-full border border border-2 border-red p-5" },
+      [
+        _c("div", { staticClass: "flex flex-col md:flex-row" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "w-full md:w-1/4 sm:w-2/4 m-2 h-32 border border-2 border-red flex text-left md:text-center"
+            },
+            [_vm._v("\n      First Module\n      ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "w-full md:w-1/4 sm:w-2/4 m-2 h-32 border border-2 border-red flex text-left md:text-center"
+            },
+            [_vm._v("\n      Second Module\n      ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "w-full md:w-1/4 sm:w-2/4 m-2 h-32 border border-2 border-red flex text-center md:text-center"
+            },
+            [_vm._v("\n      Third Module\n      ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "w-full md:w-1/4 sm:w-2/4 m-2 h-32 border border-2 border-red flex text-left md:text-center"
+            },
+            [_vm._v("\n      Fouth Module\n      ")]
+          )
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true

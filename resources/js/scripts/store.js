@@ -85,12 +85,15 @@ export const store = new Vuex.Store({
             // set current user detail
         },
         logoutUser: (state) => {
-            state.auth = {
-                is_logged_in: false,
-                user_name: "",
-                user_type: "",
-            };
-            // clear user record
+            axios.post("/api/logout").then(() => {
+                state.auth = {
+                    is_logged_in: false,
+                    user_name: "",
+                    user_type: "",
+                };
+                localStorage.clear();
+                router.push({path:"/login"});
+              });
         },
         setErrors: (state, errors) => {
             state.errors = errors;

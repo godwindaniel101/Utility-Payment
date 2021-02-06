@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+Route::middleware('auth:api')->get('logout', 'api\AuthenticationController@logout');
 Route::post('register', 'api\AuthenticationController@register');
 Route::post('login', 'api\AuthenticationController@login');
 Route::post('set_default', 'api\AdminController@createDefaultAccess');

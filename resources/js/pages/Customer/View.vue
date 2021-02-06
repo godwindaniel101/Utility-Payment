@@ -1,15 +1,35 @@
 <template>
-  <div id="app" class="md:flex antialiased">
-    <aside class="w-full md:h-screen md:w-64 bg-gray-900 md:flex md:flex-col">
+  <div class="md:flex antialiased">
+    <aside
+      class="w-full md:h-screen overflow-hidden md:w-64 bg-gray-900 md:flex md:flex-col"
+      :class="open_x ? 'h-auto' : 'h-16'"
+    >
       <header class="border-b border-solid border-gray-800 flex-grow">
-        <h1 class="py-6 px-4 text-gray-100 text-base font-medium">
-          Hello ! {{ userDetail["user_name"] }}
+        <h1
+          class="py-6 px-4 text-gray-100 text-base font-medium flex justify-between flex-row"
+        >
+          <span> Hello ! {{ getUserDetail["user_name"] }}</span>
+          <span>
+            <svg
+              
+              @click="open_x = !open_x"
+              width="25px"
+              height="25px"
+              class="visible md:hidden svg-inline--fa fa-bars fa-w-14 fa-3x cursor-pointer mx-1"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+            >
+              <path
+                fill="white"
+                d="M442 114H6a6 6 0 0 1-6-6V84a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6zm0 160H6a6 6 0 0 1-6-6v-24a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6zm0 160H6a6 6 0 0 1-6-6v-24a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6z"
+                class=""
+              ></path>
+            </svg>
+          </span>
         </h1>
       </header>
       <nav class="overflow-y-auto h-full flex-grow">
-        <header>
-          <span class="text-xs text-gray-500 block py-6 px-6">MENU</span>
-        </header>
         <ul class="font-medium px-4 text-left">
           <li class="text-gray-100">
             <router-link

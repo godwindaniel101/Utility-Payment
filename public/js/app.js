@@ -32183,11 +32183,17 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       state.auth = data; // set current user detail
     },
     logoutUser: function logoutUser(state) {
-      state.auth = {
-        is_logged_in: false,
-        user_name: "",
-        user_type: ""
-      }; // clear user record
+      axios.post("/api/logout").then(function () {
+        state.auth = {
+          is_logged_in: false,
+          user_name: "",
+          user_type: ""
+        };
+        localStorage.clear();
+        _guard__WEBPACK_IMPORTED_MODULE_2__["router"].push({
+          path: "/login"
+        });
+      });
     },
     setErrors: function setErrors(state, errors) {
       state.errors = errors; //fill error array

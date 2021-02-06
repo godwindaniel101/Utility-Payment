@@ -1,11 +1,9 @@
 <template>
-  <div
-    class=" flex items-center justify-center  py-2 px-4 sm:px-2 lg:px-2"
-  >
+  <div class="flex items-center justify-center py-2 px-4 sm:px-2 lg:px-2">
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">
-         Issue Bill
+          Issue Bill
         </h2>
       </div>
       <form
@@ -23,9 +21,9 @@
             label="customer_name"
             error="customer_name"
             :value="form.customer_name"
-            disabled='true'
+            disabled="true"
           />
- <v-input
+          <v-input
             @vchange="form.amount = $event"
             placeholder="Amount"
             type="text"
@@ -34,7 +32,7 @@
             error="amount"
             :value="form.amount"
           />
-           <v-textarea
+          <v-textarea
             @vchange="form.description = $event"
             :extra_class="'rounded-b-md'"
             placeholder="Description"
@@ -66,7 +64,7 @@
                 />
               </svg>
             </span>
-           Issue Bill
+            Issue Bill
           </button>
         </div>
       </form>
@@ -78,23 +76,26 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      form: {description:'',customer_name:'',amount:'',customer_id:''},
-      edit_mode:false,
-      customer_detail:'',
+      form: { description: "", customer_name: "", amount: "", customer_id: "" },
+      edit_mode: false,
+      customer_detail: "",
     };
   },
   mounted() {
-    this.$store.dispatch('getCustomerDetail', this.$route.params.id )
-   this.form.vendor_id = this.$route.params.id 
+    this.$store.dispatch("getCustomerDetail", this.$route.params.id);
+    this.form.vendor_id = this.$route.params.id;
+    this.customer_detail = this.getCustomerDetail;
+    this.form.customer_name = this.getCustomerDetail.name;
+    this.form.customer_id = this.getCustomerDetail.id;
   },
-   watch:{
-        getCustomerDetail(){
-            this.customer_detail = this.getCustomerDetail
-            this.form.customer_name = this.getCustomerDetail.name
-            this.form.customer_id = this.getCustomerDetail.id
-        }
+  watch: {
+    getCustomerDetail() {
+      this.customer_detail = this.getCustomerDetail;
+      this.form.customer_name = this.getCustomerDetail.name;
+      this.form.customer_id = this.getCustomerDetail.id;
     },
-      computed: {
+  },
+  computed: {
     ...mapGetters(["getCustomerDetail"]),
   },
 };

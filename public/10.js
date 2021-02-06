@@ -121,10 +121,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      open_x: false,
       info: null,
       active: "performance"
     };
@@ -155,194 +177,240 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "md:flex antialiased", attrs: { id: "app" } },
-    [
-      _c(
-        "aside",
-        {
-          staticClass:
-            "w-full md:h-screen md:w-64 bg-gray-900 md:flex md:flex-col"
-        },
-        [
-          _c(
-            "header",
-            { staticClass: "border-b border-solid border-gray-800 flex-grow" },
-            [
-              _c(
-                "h1",
-                {
-                  staticClass: "py-6 px-4 text-gray-100 text-base font-medium"
-                },
-                [
-                  _vm._v(
-                    "\n        Hello ! " +
-                      _vm._s(_vm.getUserDetail["user_name"]) +
-                      "\n      "
-                  )
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("nav", { staticClass: "overflow-y-auto h-full flex-grow" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("ul", { staticClass: "font-medium px-4 text-left" }, [
-              _c(
-                "li",
-                { staticClass: "text-gray-100" },
-                [
+  return _c("div", { staticClass: "md:flex antialiased" }, [
+    _c(
+      "aside",
+      {
+        staticClass:
+          "w-full md:h-screen overflow-hidden md:w-64 bg-gray-900 md:flex md:flex-col",
+        class: _vm.open_x ? "h-auto" : "h-16"
+      },
+      [
+        _c(
+          "header",
+          { staticClass: "border-b border-solid border-gray-800 flex-grow" },
+          [
+            _c(
+              "h1",
+              {
+                staticClass:
+                  "py-6 px-4 text-gray-100 text-base font-medium flex justify-between flex-row"
+              },
+              [
+                _c("span", [
+                  _vm._v(" Hello ! " + _vm._s(_vm.getUserDetail["user_name"]))
+                ]),
+                _vm._v(" "),
+                _c("span", [
                   _c(
-                    "router-link",
+                    "svg",
                     {
                       staticClass:
-                        "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
-                      class:
-                        _vm.$route.fullPath == "/admin" ? "bg-indigo-700" : "",
-                      attrs: { to: "/admin" }
-                    },
-                    [_vm._v("\n            Dashboard\n          ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass:
-                        "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
-                      class:
-                        _vm.$route.fullPath == "/admin/vendors"
-                          ? "bg-indigo-700"
-                          : "",
-                      attrs: { to: "/admin/vendors" }
-                    },
-                    [_vm._v("\n            Vendors\n          ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass:
-                        "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
-                      class:
-                        _vm.$route.fullPath == "//admin/complains"
-                          ? "bg-indigo-700"
-                          : "",
-                      attrs: { to: "/admin/complains" }
-                    },
-                    [_vm._v("\n            Complains\n          ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass:
-                        "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
-                      class:
-                        _vm.$route.fullPath == "/admin/payments"
-                          ? "bg-indigo-700"
-                          : "",
-                      attrs: { to: "/admin/payments" }
-                    },
-                    [_vm._v("\n            Payments\n          ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass:
-                        "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
-                      class:
-                        _vm.$route.fullPath == "/admin/report"
-                          ? "bg-indigo-700"
-                          : "",
-                      attrs: { to: "/admin/report" }
-                    },
-                    [_vm._v("\n            Report\n          ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass:
-                        "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
-                      class:
-                        _vm.$route.fullPath == "/admin/customer"
-                          ? "bg-indigo-700"
-                          : "",
-                      attrs: { to: "/admin/customer" }
-                    },
-                    [_vm._v("\n            Customers\n          ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "rounded text-sm block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full text-left",
-                      attrs: { href: "#" },
+                        "visible md:hidden svg-inline--fa fa-bars fa-w-14 fa-3x cursor-pointer mx-1",
+                      attrs: {
+                        width: "25px",
+                        height: "25px",
+                        role: "img",
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 448 512"
+                      },
                       on: {
                         click: function($event) {
-                          return _vm.$store.dispatch("logoutUser")
+                          _vm.open_x = !_vm.open_x
                         }
                       }
                     },
-                    [_vm._v("\n            Logout\n          ")]
+                    [
+                      _c("path", {
+                        attrs: {
+                          fill: "white",
+                          d:
+                            "M442 114H6a6 6 0 0 1-6-6V84a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6zm0 160H6a6 6 0 0 1-6-6v-24a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6zm0 160H6a6 6 0 0 1-6-6v-24a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6z"
+                        }
+                      })
+                    ]
                   )
-                ],
-                1
+                ])
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("nav", { staticClass: "overflow-y-auto h-full flex-grow pt-5" }, [
+          _c("ul", { staticClass: "font-medium px-4 text-left" }, [
+            _c(
+              "li",
+              { staticClass: "text-gray-100" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
+                    class:
+                      _vm.$route.fullPath == "/admin" ? "bg-indigo-700" : "",
+                    attrs: { to: "/admin" }
+                  },
+                  [_vm._v("\n            Dashboard\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
+                    class:
+                      _vm.$route.fullPath == "/admin/vendors"
+                        ? "bg-indigo-700"
+                        : "",
+                    attrs: { to: "/admin/vendors" }
+                  },
+                  [_vm._v("\n            Vendors\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
+                    class:
+                      _vm.$route.fullPath == "//admin/complains"
+                        ? "bg-indigo-700"
+                        : "",
+                    attrs: { to: "/admin/complains" }
+                  },
+                  [_vm._v("\n            Complains\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
+                    class:
+                      _vm.$route.fullPath == "/admin/payments"
+                        ? "bg-indigo-700"
+                        : "",
+                    attrs: { to: "/admin/payments" }
+                  },
+                  [_vm._v("\n            Payments\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
+                    class:
+                      _vm.$route.fullPath == "/admin/report"
+                        ? "bg-indigo-700"
+                        : "",
+                    attrs: { to: "/admin/report" }
+                  },
+                  [_vm._v("\n            Report\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
+                    class:
+                      _vm.$route.fullPath == "/admin/customer"
+                        ? "bg-indigo-700"
+                        : "",
+                    attrs: { to: "/admin/customer" }
+                  },
+                  [_vm._v("\n            Customers\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "rounded text-sm block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full text-left",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.$store.dispatch("logoutUser")
+                      }
+                    }
+                  },
+                  [_vm._v("\n            Logout\n          ")]
+                )
+              ],
+              1
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1)
+      ]
+    ),
+    _vm._v(" "),
+    _c("main", { staticClass: "bg-gray-100 h-screen w-full overflow-y-auto" }, [
+      _c(
+        "header",
+        {
+          staticClass:
+            "border-b border-solid border-gray-300 bg-white  justify-between hidden md:flex"
+        },
+        [
+          _c(
+            "router-link",
+            { staticClass: "p-6", attrs: { to: "/", tag: "h2" } },
+            [
+              _c(
+                "svg",
+                {
+                  staticClass: "svg-inline--fa fa-home-lg-alt fa-w-18 fa-3x",
+                  attrs: {
+                    width: "30px",
+                    height: "30px",
+                    role: "img",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 576 512"
+                  }
+                },
+                [
+                  _c("g", { staticClass: "fa-group" }, [
+                    _c("path", {
+                      staticClass: "fa-secondary",
+                      attrs: {
+                        fill: "#111827",
+                        d:
+                          "M352 496V368a16 16 0 0 0-16-16h-96a16 16 0 0 0-16 16v128a16 16 0 0 1-16 16H80a16 16 0 0 1-16-16V311.07c1.78-1.21 3.85-1.89 5.47-3.35L288 115l218.74 192.9c1.54 1.38 3.56 2 5.26 3.2V496a16 16 0 0 1-16 16H368a16 16 0 0 1-16-16z"
+                      }
+                    }),
+                    _c("path", {
+                      staticClass: "fa-primary",
+                      attrs: {
+                        fill: "#4338CA",
+                        d:
+                          "M527.92 283.91L298.6 81.64a16 16 0 0 0-21.17 0L48.11 283.92a16 16 0 0 1-22.59-1.21L4.1 258.89a16 16 0 0 1 1.21-22.59l256-226a39.85 39.85 0 0 1 53.45 0l255.94 226a16 16 0 0 1 1.22 22.59l-21.4 23.82a16 16 0 0 1-22.6 1.2z"
+                      }
+                    })
+                  ])
+                ]
               )
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _vm._m(2)
-        ]
+            ]
+          )
+        ],
+        1
       ),
       _vm._v(" "),
       _c(
-        "main",
-        { staticClass: "bg-gray-100 h-screen w-full overflow-y-auto" },
-        [
-          _c(
-            "header",
-            { staticClass: "border-b border-solid border-gray-300 bg-white" },
-            [
-              _c(
-                "router-link",
-                { staticClass: "p-6", attrs: { to: "/", tag: "h2" } },
-                [_vm._v("Home")]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "m-4 shadow-sm bg-white min-h-4/5 h-5/6 max-h-full"
-            },
-            [_c("router-view")],
-            1
-          )
-        ]
+        "div",
+        { staticClass: "m-4 shadow-sm bg-white min-h-4/5 max-h-full" },
+        [_c("router-view")],
+        1
       )
-    ]
-  )
+    ])
+  ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", [
-      _c("span", { staticClass: "text-xs text-gray-500 block py-6 px-6" }, [
-        _vm._v("MENU")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

@@ -89,25 +89,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       form: {
-        description: '',
-        customer_name: '',
-        amount: '',
-        customer_id: ''
+        description: "",
+        customer_name: "",
+        amount: "",
+        customer_id: ""
       },
       edit_mode: false,
-      customer_detail: ''
+      customer_detail: ""
     };
   },
   mounted: function mounted() {
-    this.$store.dispatch('getCustomerDetail', this.$route.params.id);
+    this.$store.dispatch("getCustomerDetail", this.$route.params.id);
     this.form.vendor_id = this.$route.params.id;
+    this.customer_detail = this.getCustomerDetail;
+    this.form.customer_name = this.getCustomerDetail.name;
+    this.form.customer_id = this.getCustomerDetail.id;
   },
   watch: {
     getCustomerDetail: function getCustomerDetail() {
@@ -139,8 +140,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass:
-        " flex items-center justify-center  py-2 px-4 sm:px-2 lg:px-2"
+      staticClass: "flex items-center justify-center py-2 px-4 sm:px-2 lg:px-2"
     },
     [
       _c("div", { staticClass: "max-w-md w-full space-y-8" }, [
@@ -261,7 +261,7 @@ var render = function() {
                       )
                     ]
                   ),
-                  _vm._v("\n          Issue Bill\n         ")
+                  _vm._v("\n          Issue Bill\n        ")
                 ]
               )
             ])
@@ -280,7 +280,7 @@ var staticRenderFns = [
       _c(
         "h2",
         { staticClass: "mt-6 text-center text-3xl font-bold text-gray-900" },
-        [_vm._v("\n        Issue Bill\n       ")]
+        [_vm._v("\n        Issue Bill\n      ")]
       )
     ])
   }

@@ -33,6 +33,27 @@ class AuthenticationController extends Controller
             return response()->json($e->getMessage(), 500);
         }
     }
+    public function logout(Request $request)
+    {
+        try {
+            $loggedInUSer = Auth::user();
+            if ($loggedInUSer == null) {
+                $accessToken = User::where('email', $request->email)->first()->token();
+            } else {
+                $accessToken = Auth::user()->token();
+            }
+            $token = $request->user()->tokens->find($accessToken);
+            $token->revoke();
+            $response['msg'] = "Successfully logout";
+            return response()->json($response, 201);
+        } catch (Exception $e) {
+            app('sentry')->captureException($e);
+            return response()->json(
+                $e->getMessage(),
+                500
+            );
+        }
+    }
     public function login(Request $request)
     {
         // return $request;

@@ -113,6 +113,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -153,206 +173,213 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "md:flex antialiased", attrs: { id: "app" } },
-    [
+  return _c("div", { staticClass: "md:flex antialiased" }, [
+    _c(
+      "aside",
+      {
+        staticClass:
+          "w-full md:h-screen overflow-hidden md:w-64 bg-gray-900 md:flex md:flex-col",
+        class: _vm.open_x ? "h-auto" : "h-16"
+      },
+      [
+        _c(
+          "header",
+          { staticClass: "border-b border-solid border-gray-800 flex-grow" },
+          [
+            _c(
+              "h1",
+              {
+                staticClass:
+                  "py-6 px-4 text-gray-100 text-base font-medium flex justify-between flex-row"
+              },
+              [
+                _c("span", [
+                  _vm._v(" Hello ! " + _vm._s(_vm.getUserDetail["user_name"]))
+                ]),
+                _vm._v(" "),
+                _c("span", [
+                  _c(
+                    "svg",
+                    {
+                      staticClass:
+                        "visible md:hidden svg-inline--fa fa-bars fa-w-14 fa-3x cursor-pointer mx-1",
+                      attrs: {
+                        width: "25px",
+                        height: "25px",
+                        role: "img",
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 448 512"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.open_x = !_vm.open_x
+                        }
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          fill: "white",
+                          d:
+                            "M442 114H6a6 6 0 0 1-6-6V84a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6zm0 160H6a6 6 0 0 1-6-6v-24a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6zm0 160H6a6 6 0 0 1-6-6v-24a6 6 0 0 1 6-6h436a6 6 0 0 1 6 6v24a6 6 0 0 1-6 6z"
+                        }
+                      })
+                    ]
+                  )
+                ])
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("nav", { staticClass: "overflow-y-auto h-full flex-grow" }, [
+          _c("ul", { staticClass: "font-medium px-4 text-left" }, [
+            _c(
+              "li",
+              { staticClass: "text-gray-100" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
+                    class:
+                      _vm.$route.fullPath == "/customer" ? "bg-indigo-700" : "",
+                    attrs: { to: "/customer" }
+                  },
+                  [_vm._v("\n            Dashboard\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
+                    class:
+                      _vm.$route.fullPath == "/customer/top-up"
+                        ? "bg-indigo-700"
+                        : "",
+                    attrs: { to: "/customer/top-up" }
+                  },
+                  [_vm._v("\n            Top Up\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
+                    class:
+                      _vm.$route.fullPath == "/customer/bill"
+                        ? "bg-indigo-700"
+                        : "",
+                    attrs: { to: "/customer/bill" }
+                  },
+                  [_vm._v("\n            Bill\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
+                    class:
+                      _vm.$route.fullPath == "/customer/payment"
+                        ? "bg-indigo-700"
+                        : "",
+                    attrs: { to: "/customer/payment" }
+                  },
+                  [_vm._v("\n            Payments\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
+                    class:
+                      _vm.$route.fullPath == "/customer/complain"
+                        ? "bg-indigo-700"
+                        : "",
+                    attrs: { to: "/customer/complain" },
+                    on: {
+                      click: function($event) {
+                        return _vm.select("performance")
+                      }
+                    }
+                  },
+                  [_vm._v("\n            Complain\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass:
+                      "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
+                    class:
+                      _vm.$route.fullPath == "/customer/report"
+                        ? "bg-indigo-700"
+                        : "",
+                    attrs: { to: "/customer/report" },
+                    on: {
+                      click: function($event) {
+                        return _vm.select("performance")
+                      }
+                    }
+                  },
+                  [_vm._v("\n            Report\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "rounded text-sm block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full text-left",
+                    attrs: { href: "#performance" },
+                    on: {
+                      click: function($event) {
+                        return _vm.$store.dispatch("logoutUser")
+                      }
+                    }
+                  },
+                  [_vm._v("\n            Logout\n          ")]
+                )
+              ],
+              1
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1)
+      ]
+    ),
+    _vm._v(" "),
+    _c("main", { staticClass: "bg-gray-100 h-screen w-full overflow-y-auto" }, [
       _c(
-        "aside",
-        {
-          staticClass:
-            "w-full md:h-screen md:w-64 bg-gray-900 md:flex md:flex-col"
-        },
+        "header",
+        { staticClass: "border-b border-solid border-gray-300 bg-white" },
         [
           _c(
-            "header",
-            { staticClass: "border-b border-solid border-gray-800 flex-grow" },
-            [
-              _c(
-                "h1",
-                {
-                  staticClass: "py-6 px-4 text-gray-100 text-base font-medium"
-                },
-                [
-                  _vm._v(
-                    "\n        Hello ! " +
-                      _vm._s(_vm.userDetail["user_name"]) +
-                      "\n      "
-                  )
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("nav", { staticClass: "overflow-y-auto h-full flex-grow" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("ul", { staticClass: "font-medium px-4 text-left" }, [
-              _c(
-                "li",
-                { staticClass: "text-gray-100" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass:
-                        "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
-                      class:
-                        _vm.$route.fullPath == "/customer"
-                          ? "bg-indigo-700"
-                          : "",
-                      attrs: { to: "/customer" }
-                    },
-                    [_vm._v("\n            Dashboard\n          ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass:
-                        "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
-                      class:
-                        _vm.$route.fullPath == "/customer/top-up"
-                          ? "bg-indigo-700"
-                          : "",
-                      attrs: { to: "/customer/top-up" }
-                    },
-                    [_vm._v("\n            Top Up\n          ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass:
-                        "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
-                      class:
-                        _vm.$route.fullPath == "/customer/bill"
-                          ? "bg-indigo-700"
-                          : "",
-                      attrs: { to: "/customer/bill" }
-                    },
-                    [_vm._v("\n            Bill\n          ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass:
-                        "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
-                      class:
-                        _vm.$route.fullPath == "/customer/payment"
-                          ? "bg-indigo-700"
-                          : "",
-                      attrs: { to: "/customer/payment" }
-                    },
-                    [_vm._v("\n            Payments\n          ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass:
-                        "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
-                      class:
-                        _vm.$route.fullPath == "/customer/complain"
-                          ? "bg-indigo-700"
-                          : "",
-                      attrs: { to: "/customer/complain" },
-                      on: {
-                        click: function($event) {
-                          return _vm.select("performance")
-                        }
-                      }
-                    },
-                    [_vm._v("\n            Complain\n          ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass:
-                        "rounded text-sm text-left block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full",
-                      class:
-                        _vm.$route.fullPath == "/customer/report"
-                          ? "bg-indigo-700"
-                          : "",
-                      attrs: { to: "/customer/report" },
-                      on: {
-                        click: function($event) {
-                          return _vm.select("performance")
-                        }
-                      }
-                    },
-                    [_vm._v("\n            Report\n          ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "rounded text-sm block py-3 px-6 hover:bg-blue-200 hover:text-gray-900 w-full text-left",
-                      attrs: { href: "#performance" },
-                      on: {
-                        click: function($event) {
-                          return _vm.$store.dispatch("logoutUser")
-                        }
-                      }
-                    },
-                    [_vm._v("\n            Logout\n          ")]
-                  )
-                ],
-                1
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _vm._m(2)
-        ]
+            "router-link",
+            { staticClass: "p-6", attrs: { to: "/", tag: "h2" } },
+            [_vm._v("Home")]
+          )
+        ],
+        1
       ),
       _vm._v(" "),
       _c(
-        "main",
-        { staticClass: "bg-gray-100 h-screen w-full overflow-y-auto" },
-        [
-          _c(
-            "header",
-            { staticClass: "border-b border-solid border-gray-300 bg-white" },
-            [
-              _c(
-                "router-link",
-                { staticClass: "p-6", attrs: { to: "/", tag: "h2" } },
-                [_vm._v("Home")]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "m-4 shadow-sm bg-white min-h-4/5 h-5/6 max-h-full"
-            },
-            [_c("router-view")],
-            1
-          )
-        ]
+        "div",
+        { staticClass: "m-4 shadow-sm bg-white min-h-4/5 h-5/6 max-h-full" },
+        [_c("router-view")],
+        1
       )
-    ]
-  )
+    ])
+  ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", [
-      _c("span", { staticClass: "text-xs text-gray-500 block py-6 px-6" }, [
-        _vm._v("MENU")
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
