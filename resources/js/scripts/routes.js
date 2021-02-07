@@ -7,7 +7,7 @@ const Login = resolve => require(['../pages/Authentication/Login'], resolve);
 
 // start admin routes
 const AdminView = resolve => require(['../pages/Admin/View'], resolve);
-const AdminIndex = resolve => require(['../pages/Admin/Index'], resolve);
+const AdminIndex = resolve => require(['../pages/Admin/Dashboard/Index'], resolve);
 const AdminComplains = resolve => require(['../pages/Admin/Complains'], resolve);
 const AdminPayments = resolve => require(['../pages/Admin/Payments'], resolve);
 
@@ -28,7 +28,7 @@ const AdminCustomerIssueBill = resolve => require(['../pages/Admin/Customer/Issu
 
 // start Customer routes
 const CustomerView = resolve => require(['../pages/Customer/View'], resolve);
-const CustomerIndex = resolve => require(['../pages/Customer/Index'], resolve);
+const CustomerIndex = resolve => require(['../pages/Customer/Dashboard/Index'], resolve);
 const CustomerTopUpView = resolve => require(['../pages/Customer/TopUp/View'], resolve);
 const CustomerTopUpIndex = resolve => require(['../pages/Customer/TopUp/Index'], resolve);
 const CustomerTopUpIndexData = resolve => require(['../pages/Customer/TopUp/IndexData'], resolve);
@@ -44,6 +44,10 @@ const CustomerBillIndex = resolve => require(['../pages/Customer/Bill/Index'], r
 const CustomerBillPay = resolve => require(['../pages/Customer/Bill/Pay'], resolve);
 // end Customer routes
 
+
+
+
+const Settings = resolve => require(['../pages/Shared/Settings'], resolve);
 
 
 //sub pages
@@ -91,6 +95,7 @@ export const routes = [
                             { path: 'detail/:id/number', component: AdminVendorsNumber },
                         ]
                     },
+                    { path: 'settings', component: Settings, },
                 ]
             },
             {
@@ -128,6 +133,7 @@ export const routes = [
                         ]
                     },
                     { path: 'payment', component: CustomerPayment },
+                    { path: 'settings', component: Settings, },
                 ]
             }
 
